@@ -8,6 +8,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "strictNullChecks": true,
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "lib": [
       "dom",
