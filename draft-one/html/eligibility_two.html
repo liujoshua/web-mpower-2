@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<body>
+<head>
+    <title> mPower </title>
+    <link rel="stylesheet" href="../css/page_one.css">
+</head>
+<nav id="navMenu" position="absolute"></nav>
+<div id="park"> 
+   <p> You would be a great fit for the mPower study! </p>
+   <br>
+   <p class="tiny"> We'd just like to know a couple more things about you to make sure 
+       you're eligible </p>
+    <br><br>
+    <p> I am </p>
+    <input id="ageSubmit" type="number" min="0" max="100" />
+    <p> I live in </p>
+    <input id="placeField" type="text" v-on:keyup="place" />
+    <br>
+    <br>
+    <br>
+    <button id="submission"> Submit </button>
+</div>
+<script src="https://unpkg.com/vue"></script>
+<script type="text/javascript" src="../js/handle_logic.js"></script>
+</body>
+</html>
