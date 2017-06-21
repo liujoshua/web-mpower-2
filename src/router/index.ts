@@ -12,6 +12,12 @@ export default new Router({
       name: 'Hello',
       component: Hello,
     },
+    {
+      path: '/About',
+      name: 'About',
+      component: About,
+    },
   ],
 });
 
+import About from "@/components/About.vue";
