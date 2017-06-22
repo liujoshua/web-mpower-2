@@ -1,7 +1,7 @@
 
 <template>
 
-  <div id="app">
+  <nav id="app">
     <svg height = "150" width="100%"> +
       <text x=10 y=30> mPower </text> +
       <circle cy="35" cx="1200" r="33" /> +
@@ -18,7 +18,7 @@
     </div>
 
      
-  </div>
+  </nav>
 </template>
 
 
@@ -33,6 +33,9 @@
 
 <style>
 
+nav#app {
+    position: absolute;
+}
 
 h2 {
   font-size: 14px;

@@ -10,21 +10,21 @@
 
     <!--Field input one-->
     <p> I am </p>
-    <input v-on:keyup="response" id="ageField" type="number" min="0" max="100" />
+    <input v-on:keyup="response" id="ageField" type="number" min="0" max="100"></input>
 
     <!--Field input two-->
     <p v-if="ageAnswered"> I live in </p>
-    <input id="placeField" type="text" v-on:keyup="response" v-if="ageAnswered" />
+    <input id="placeField" type="text" v-on:keyup="response" v-if="ageAnswered" ></input>
 
     <!--Field input three-->
     <br v-if="holder_one">
     <p v-if="holder_one"> and I feel </p> 
-    <input id="comfortable" type="text" v-on:keyup="response" v-if="holder_one"/>
+    <input id="comfortable" type="text" v-on:keyup="response" v-if="holder_one"> </input>
     <p v-if="holder_one"> using my iPhone </p>
 
     <br>
     <br>
-    <button v-on:keyup="clicked" id="submission" > Submit </button>
+    <button v-on:click="clicked" id="submission" > Submit </button>
 </div>
 
 </template>
@@ -41,15 +41,13 @@
     holder_one: boolean = false; // Might fix later, function response is called twice
                                         // for unknown reason, works for now
     holder_two: boolean = false;           
-
-    setTrue(): void {
-      this.ageAnswered = true;
-    }
+    holder_three: boolean = false;
     response(): void {
 
       if(this.holder_two) {
           var get = <HTMLInputElement> document.getElementById("submission");
           get.style.opacity = "1"; 
+          this.holder_three = true;
       }
 
       if(this.holder_one && !this.holder_two) {
@@ -71,8 +69,8 @@
 
     }
     clicked(): void {
-      if(this.holder_two) {
-        
+      if(this.holder_three) {
+          window.location.href = "http://localhost:8080/#/congratulations"
       }
 
     }
