@@ -2,13 +2,16 @@
 <template>
 
   <nav id="app">
-    <svg height = "150" width="100%"> +
-      <text x=10 y=30> mPower </text> +
-      <circle cy="35" cx="1200" r="33" /> +
-      <circle cy="35" cx="1100" r="33" /> +
-      <circle cy="35" cx="1000" r="33"/> +
-      <circle cy="35" cx="900" r="33"/> +
-      <circle cy="35" cx= "800" r="33"/> +
+    <svg height = "150" width="100%"> 
+
+    <a xlink:href="#" >
+    <text x=10 y=30 >mPower</text>
+    </a>
+      <circle cy="35" cx="1200" r="33" /> 
+      <circle cy="35" cx="1100" r="33" /> 
+      <circle cy="35" cx="1000" r="33"/> 
+      <circle cy="35" cx="900" r="33"/> 
+      <circle cy="35" cx= "800" r="33"/> 
       </svg>
 
     <router-view></router-view>
@@ -90,6 +93,10 @@ text {
     align-items: left;
 }
 
+option {
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 select {
 
