@@ -1,7 +1,8 @@
 <template>
 
   
-  <div class="park"> 
+  <div class="page-overview"> 
+
    <p> You would be a great fit for the mPower study! </p>
    <br>
    <p class="tiny"> We'd just like to know a couple more things about you to make sure 
@@ -13,14 +14,18 @@
     <input v-on:keyup="response" id="ageField" type="number" min="0" max="100"></input>
 
     <!--Field input two-->
-    <p v-if="ageAnswered"> I live in </p>
-    <input id="placeField" type="text" v-on:keyup="response" v-if="ageAnswered" ></input>
+    <span v-if="ageAnswered">
+      <p> I live in </p>
+      <input id="placeField" type="text" v-on:keyup="response"></input>
+    </span>
 
     <!--Field input three-->
-    <br v-if="holder_one">
-    <p v-if="holder_one"> and I feel </p> 
-    <input id="comfortable" type="text" v-on:keyup="response" v-if="holder_one"> </input>
-    <p v-if="holder_one"> using my iPhone </p>
+    <span v-if="holder_one">
+      <br>
+      <p > and I feel </p> 
+      <input id="comfortable" type="text" v-on:keyup="response" > </input>
+      <p > using my iPhone </p>
+    </span>
 
     <br>
     <br>

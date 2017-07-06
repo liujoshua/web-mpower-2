@@ -3,8 +3,8 @@ import Router from "vue-router";
 
 Vue.use(Router);
 
-import Hello from "@/components/Hello.vue";
-import About from "@/components/About.vue";
+import Subject_Interest from "@/components/Subject_Interest.vue";
+import Eligibility from "@/components/Eligibility.vue";
 import congratulations from "@/components/congratulations.vue";
 
 
@@ -12,13 +12,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello,
+      name: 'Subject_cInterest',
+      component: Subject_Interest,
     },
     {
-      path: '/About',
-      name: 'About',
-      component: About,
+      path: '/Eligibility',
+      name: 'Eligibility',
+      component: Eligibility,
     },
     {
       path: '/congratulations',

@@ -3,13 +3,13 @@
 
   <section class="container"> 
 
-    <div class="left">
+    <div >
 
         <img src="../assets/check.png" alt="image of a check marked circle">
 
     </div>
 
-    <div class="right"> 
+    <div> 
 
         <p> Congratulations, you're eligible! </p>
         <br>
@@ -49,8 +49,6 @@
   }
 </script>
 
-<style scoped lang="scss">
-    button {
-      opacity: 1;
-    }
+<style>
+    
 </style>
