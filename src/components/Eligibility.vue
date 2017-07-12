@@ -1,12 +1,12 @@
 <template>
 
-  
-  <div class="page-overview"> 
 
-   <p> You would be a great fit for the mPower study! </p>
-   <br>
-   <p class="tiny"> We'd just like to know a couple more things about you to make sure 
-       you're eligible </p>
+  <div class="page-overview">
+
+    <p> You would be a great fit for the mPower study! </p>
+    <br>
+    <p class="tiny"> We'd just like to know a couple more things about you to make sure
+      you're eligible </p>
     <br><br>
 
     <!--Field input one-->
@@ -22,69 +22,67 @@
     <!--Field input three-->
     <span v-if="holder_one">
       <br>
-      <p > and I feel </p> 
-      <input id="comfortable" type="text" v-on:keyup="response" > </input>
-      <p > using my iPhone </p>
+      <p> and I feel </p>
+      <input id="comfortable" type="text" v-on:keyup="response"> </input>
+      <p> using my iPhone </p>
     </span>
 
     <br>
     <br>
-    <button v-on:click="clicked" id="submission" > Submit </button>
-</div>
+    <button v-on:click="clicked" id="submission"> Submit </button>
+  </div>
 
 </template>
 
 
-<script lang="ts">
-  import Vue from 'vue'
-  import Component from 'vue-class-component'
-  @Component
-  export default class App extends Vue {
-    name: string = 'app'
-    ageAnswered: boolean = false;
-    placeAnswered: boolean = false;
-    holder_one: boolean = false; // Might fix later, function response is called twice
-                                        // for unknown reason, works for now
-    holder_two: boolean = false;           
-    holder_three: boolean = false;
-    response(): void {
-
-      if(this.holder_two) {
-          var get = <HTMLInputElement> document.getElementById("submission");
-          get.style.opacity = "1"; 
-          this.holder_three = true;
+<script>
+  export default {
+    name: 'eligibility',
+    data () {
+      return {
+        ageAnswered: false,
+        placeAnswered: false,
+        holder_one: false, // Might fix later, function response is called twice
+        // for unknown reason, works for now
+        holder_two: false,
+        holder_three: false
       }
+    },
+    methods: {
+      response () {
+        if (this.holder_two) {
+          let get = document.getElementById(`submission`)
+          get.style.opacity = `1`
+          this.holder_three = true
+        }
 
-      if(this.holder_one && !this.holder_two) {
-         this.holder_two = true;
+        if (this.holder_one && !this.holder_two) {
+          this.holder_two = true
+        }
+
+        if (this.ageAnswered && this.placeAnswered && !this.holder_one) {
+          this.holder_one = true
+        }
+
+        if (this.ageAnswered && !this.placeAnswered) {
+          this.placeAnswered = true
+        }
+
+        if (!this.ageAnswered) {
+          this.ageAnswered = true
+        }
+      },
+      clicked () {
+        if (this.holder_three) {
+          window.location.href = `http://localhost:8080/#/congratulations`
+        }
       }
-
-      if(this.ageAnswered && this.placeAnswered  && !this.holder_one) {
-        this.holder_one = true;
-      }
-
-
-      if(this.ageAnswered && !this.placeAnswered) {
-        this.placeAnswered = true;
-      }
-
-      if(!this.ageAnswered) {
-        this.ageAnswered = true;
-      } 
-
     }
-    clicked(): void {
-      if(this.holder_three) {
-          window.location.href = "http://localhost:8080/#/congratulations"
-      }
-
-    }
-
   }
 </script>
 
 <style scoped lang="scss">
-    button {
-      opacity: 0.4;
-    }
+  button {
+    opacity: 0.4;
+  }
 </style>
