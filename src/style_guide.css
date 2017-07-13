@@ -1,12 +1,93 @@
 
 
+@media (max-width: 767px) { 
+    .customizedSelect {
+        width: 76%;
+        margin-left: 12%; 
+    }
+     .pageOne {
+        font-size: 22px !important;
+        color: #31117D;
+        margin-left: 0%;
+        font-size: 22px;
+    }
+
+
+    button {
+        margin-left: 20% !important;
+        width: 50%;
+        bottom: 10px;
+        position: fixed;
+    }
+}
+
+@media (min-width: 767px) { 
+    
+    .pageOne {
+        font-size: 30px !important;
+        color: #31117D;
+        margin-left: 30%;
+        font-size: 22px;
+    }
+
+    .customizedSelect {
+        width: 26%;
+        margin-left: 30%;
+    }
+
+     button {
+        margin-left: 40%;
+        width: 20%;
+        bottom: 35%; 
+        position: fixed;
+    }
+}
+
+.router {
+    margin-top: 150px;
+}
+
+.customNav {
+    background-color: white !important;
+}
+
+.footer {
+    display: none;
+}
+
+.bar {
+    padding: 0px;
+}
+
 hr {
     border: solid 0.3px;
     border-radius: 4px;
     box-shadow: 0px 0px 1px #888888;
     border-color: #dee4ed;
+}
+
+.navbar {
+    background-color: inherit;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    position: fixed;
+    margin-bottom: 80px;
+    width: 100%;
+}
 
 
+.check {
+    background-color: #E0F2E1;    
+}
+
+
+img {
+    border-radius: 50%;
+    background-color: gray;
+    margin-left: 2px;
+    margin-right: 2px;
+    width: 55px;
+    height: 55px;
 }
 
 nav#app {
@@ -23,12 +104,15 @@ div.overview {
     color: #31117D;
 }
 
+
+
 p {
     margin-left: 25%;
     display: inline;
     font-family: "Open Sans",open-sans,sans-serif;
-    font-size: 30px;
-    color: #31117D;    
+    font-size: 22px;
+    color: #31117D;
+    /*text-align: left;    */
 }
 
 nav#navMenu {
@@ -75,10 +159,18 @@ option {
     font-family: "Open Sans",open-sans,sans-serif;
 }
 
+.page-overview.text-left {
+    font-family: inherit;
+    color: inherit;
+    font-size: 24px;
+}
+
+
+
 select {
     width: 55%;
     margin-left: 24%;
-    padding: 16px 20px;
+    padding: 16px 25px;
     border-style: none none solid none;
     border-radius: 4px;
     font-size: 20px;
@@ -88,7 +180,6 @@ select {
 }
 
 button {
-    margin-left: 50%;
     border-radius: 5px;
     background-color: #31117D; /* Green */
     border: thin;
