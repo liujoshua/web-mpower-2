@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - 7
 
-# https://github.com/dwyl/learn-nightwatch/issues/8#issuecomment-264734792
+# Selenium-fixes, see: https://github.com/dwyl/learn-nightwatch/issues/8#issuecomment-264734792
 dist: trusty
 sudo: required
 before_install:
@@ -13,8 +13,9 @@ before_install:
  - sudo apt-get install -y libappindicator1 fonts-liberation
  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
  - sudo dpkg -i google-chrome*.deb
-script:
+before_script:
   - jdk_switcher use oraclejdk8
+# End Selenium-fixes
 
 cache:
   directories:
