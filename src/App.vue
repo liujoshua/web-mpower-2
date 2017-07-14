@@ -44,11 +44,6 @@
 </template>
 
 
-<script>
-    // export default {
-    //     name:  'app'
-    // }
-</script>
 
 <style src="./css/bootstrap.min.css"> </style>
 <style src="./style_guide.css"> </style>

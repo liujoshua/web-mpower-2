@@ -1,12 +1,12 @@
 <template>
 
   <!--<div class="container-fluid">-->
-    <div class="page-overview text-left">
-      <p class="pageOne" > I'm interested in joining mPower because I </p>
+    <div class="page-overview">
+      <div class="pageOne col-md-8 offset-md-4" > I'm interested in joining mPower because I </div>
     <br>
     <br>
   
-    <select class="custom-select customizedSelect" v-model="selected">
+    <select class="col-md-8 offset-md-4 custom-select customizedSelect" v-model="selected">
       <option disabled value="">Please select one</option>
       <option> {{ hasParkinsons }}</option>
     </select>
@@ -15,8 +15,7 @@
     <br>
   
     <div v-if="seen" >
-      <p class="pageOne"> and I would be willing to try </p>
-  
+      <div class="pageOne col-md-8 offset-md-4"> and I would be willing to try </div>
       <br>
       <br>
       <select class="custom-select customizedSelect" id="pleaseSelect" v-model="selected_option_two">
@@ -66,7 +65,7 @@ export default {
   data () {
     return {
       hasParkinsons: 'have parkinsons',
-      willing: 'this study to help further the research on Parkinsons',
+      willing: 'this study',
       selected: '',
       selected_option_two: '',
       seen: false
