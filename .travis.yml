@@ -3,6 +3,8 @@ node_js:
   - 7
 
 # https://github.com/dwyl/learn-nightwatch/issues/8#issuecomment-264734792
+dist: trusty
+sudo: required
 before_install:
  - export CHROME_BIN=/usr/bin/google-chrome
  - export DISPLAY=:99.0
