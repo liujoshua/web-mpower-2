@@ -1,5 +1,17 @@
 
+.inputLabel {
+    font-size: 24px !important;
+}
 
+.feelLabel {
+    /*margin-left: 0%;*/
+    font-size: 24px;
+    padding-left: 1px;
+    padding-right: 1px;
+    margin-right: 1px;
+}
+
+/* For extra small and medium sized devices */
 @media (max-width: 767px) { 
     .customizedSelect {
         width: 76%;
@@ -12,15 +24,20 @@
         font-size: 22px;
     }
 
+    .input-group {
+        margin-bottom: 20px;
+    }
 
     button {
-        margin-left: 20% !important;
-        width: 50%;
-        bottom: 10px;
+        margin-left: 50% !important;
+        width: 40%;
+        bottom: 5px;
         position: fixed;
+        z-index:1000; 
     }
 }
 
+/* For medium devices and larger */
 @media (min-width: 767px) { 
     
     #ageField {
@@ -58,8 +75,9 @@
      button#next {
         margin-left: 40%;
         width: 20%;
-        bottom: 20%; 
+        bottom: 0%; 
         position: fixed;
+        z-index:1000; 
     }
 
 
@@ -71,6 +89,13 @@
 
 .customNav {
     background-color: white !important;
+    background-color: inherit;
+    border-bottom-style: solid;
+    border-bottom-color: grey;
+    position: fixed;
+    margin-bottom: 80px;
+    width: 100%;
+    /*max-height: 20%;*/
 }
 
 .footer {
@@ -87,16 +112,6 @@ hr {
     box-shadow: 0px 0px 1px #888888;
     border-color: #dee4ed;
 }
-
-.navbar {
-    background-color: inherit;
-    border-bottom-style: solid;
-    border-bottom-color: grey;
-    position: fixed;
-    margin-bottom: 80px;
-    width: 100%;
-}
-
 
 .check {
     background-color: #E0F2E1;    
@@ -168,13 +183,6 @@ text {
 .container {
     display: flex;
 }
-/*.left {
-    flex: -5 0 65%;
-}
-.right {
-    flex: 1;
-    align-items: left;
-}*/
 
 option {
     font-size: 30px;
@@ -186,8 +194,6 @@ option {
     color: inherit;
     font-size: 24px;
 }
-
-
 
 select {
     width: 55%;
@@ -201,7 +207,7 @@ select {
 
 }
 
-button {
+button#next {
     border-radius: 5px;
     background-color: #31117D; 
     border: thin;

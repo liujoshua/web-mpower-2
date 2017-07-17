@@ -13,12 +13,14 @@ module.exports = {
     "jquery": true
   },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: 'standard',
+  extends: 
+  ['standard']
+  ,
   // required to lint *.vue files
   plugins: [
     'html',
     "jquery",
-    "dollar-sign"
+    "dollar-sign",
   ],
   // add your custom rules here
   'rules': {

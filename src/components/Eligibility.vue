@@ -7,108 +7,93 @@
     <br>
     <br>
   
-    <!--Field input one-->
-    <!--<p> I am </p>-->
-    <!--<input v-on:keyup="response" id="ageField" type="number" min="0" max="100"></input>-->
-
-     <div class="input-group mb-2 mr-sm-2 mb-sm-0 col-md-4 offset-md-4 hidden-md-down">
-        <label class="form-input-label col-md-4 mr-0" id="ageField"> I am </label>
-        <input v-model.number="age" type="number" class="form-control ml-0 col-md-8 " id="ageField" placeholder="enter age" min=0 max=100>
+    <div class="row">
+      <div class="input-group col-md-4 offset-md-2">
+        <label class="form-input-label mr-2 inputLabel"> I am </label>
+        <input v-model.number="age" type="number" class="form-control ml-0 " id="ageField" placeholder="enter age" min=0 max=100>
+      </div>
+  
+      <div v-if="notOldEnough" class="alert alert-danger col-md-4 offset-md-4" role="alert">
+        <strong>Sorry.</strong> Participants must be at least 18 years of age to register.
+      </div>
+  
+      <!--Field input two-->
+      
+      <div v-if="ageAnswered && !notOldEnough" class="input-group col-md-4">
+        <label class="form-input-label mr-2 inputLabel"> I live in </label>
+        <input v-model="place" id="placeField" class="form-control" type="text" placeholder="enter zip"></input>
+      </div>
     </div>
-  
-    <div class="input-group mb-2 mr-sm-2 mb-sm-0 hidden-md-up ">
-        <label class="form-input-label  "> I am  </label>
-        <input v-model.number="age" type="number" class="form-control ml-0  " id="ageField" placeholder="enter age" min=0 max=100>
+
+    <br >
+      <!--Field input three-->
+    <div class="row">
+      <div class="col-md-12 input-group" v-if="placeAnswered">
+        <div class="feelLabel col-4 col-sm-2 col-md-2 offset-md-2"> and I feel </div>
+        <select class="custom-select col-8 col-sm-4 col-md-2 ml-0 mr-0" id="comfortable" placeholder="please select one" v-model="selectedOption">
+          <option disabled value="">Please select</option>
+          <option>{{comfortable}}</option>
+        </select>        
+        <div class="feelLabel col-md-9 col-sm-6 ml-3 hidden-xs-down"> using my mobile device </div>
+      </div>
     </div>
 
-
-    <!--Field input two-->
-    <span v-if="ageAnswered">
-      <p> I live in </p>
-      <input id="placeField" type="text"></input>
-    </span>
-  
-    <!--Field input three-->
-    <span v-if="placeAnswered">
-      <br>
-      <p> and I feel </p>
-      <input id="comfortable" type="text"> </input>
-      <p> using my iPhone </p>
-    </span>
-  
-    <br>
-    <br>
-    <button v-on:click="clicked" id="next"> Submit </button>
-  </div>
+    <div class="row hidden-sm-up">
+      <div class="col-12">
+            <div class="feelLabel col-12"> using my mobile device </div>
+      </div>
+    </div>
+    <div class="row">
+        <br>
+        <br>
+        <div class="col-md-12">
+          <button v-on:click="clicked" id="next"> Submit </button>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+
 <script>
+
 export default {
 
   data () {
     return {
       age: '',
-      ageAnswered: false,
-      placeAnswered: false
+      ageAnswered: true,
+      place: '',
+      placeAnswered: true,
+      isEligible: true,
+      notOldEnough: false,
+      comfortable: 'comfortable',
+      selectedOption: ''
+    }
+  },
+  watch: {
+    age: function () {
+      this.notOldEnough = this.age < 18
+      this.ageAnswered = true
+    },
+    place: function () {
+      this.placeAnswered = (this.place !== '')
     }
   },
   methods: {
     clicked () {
       if (this.age) {
-        this.ageAnswered = true
+        console.log('clicked')
       }
     }
   }
 }
-// export default {
-//   name: 'eligibility',
-//   data () {
-//     return {
-//       ageAnswered: false,
-//       placeAnswered: false,
-//       holder_one: false, // Might fix later, function response is called twice
-//       // for unknown reason, works for now
-//       holder_two: false,
-//       holder_three: false
-//     }
-//   },
-//   methods: {
-//     response () {
-//       if (this.holder_two) {
-//         let get = document.getElementById(`submission`)
-//         get.style.opacity = `1`
-//         this.holder_three = true
-//       }
 
-//       if (this.holder_one && !this.holder_two) {
-//         this.holder_two = true
-//       }
-
-//       if (this.ageAnswered && this.placeAnswered && !this.holder_one) {
-//         this.holder_one = true
-//       }
-
-//       if (this.ageAnswered && !this.placeAnswered) {
-//         this.placeAnswered = true
-//       }
-
-//       if (!this.ageAnswered) {
-//         this.ageAnswered = true
-//       }
-//     },
-//     clicked () {
-//       if (this.holder_three) {
-//         var location = window.location.href.replace('Eligibility', 'congratulations')
-//         window.location.href = location
-//       }
-//     }
-//   }
-// }
 </script>
 
 <style >
-  button {
-    opacity: 1;
-  }
+button {
+  opacity: 1;
+}
 </style>

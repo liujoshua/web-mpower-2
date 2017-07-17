@@ -1,8 +1,7 @@
 <template>
 
-  <!--<div class="container-fluid">-->
     <div class="page-overview">
-      <div class="pageOne col-md-8 offset-md-4" > I'm interested in joining mPower because I </div>
+      <div class="pageOne col-md-9 offset-md-4" > I'm interested in joining mPower because I </div>
     <br>
     <br>
   
@@ -18,6 +17,7 @@
       <div class="pageOne col-md-8 offset-md-4"> and I would be willing to try </div>
       <br>
       <br>
+
       <select class="custom-select customizedSelect" id="pleaseSelect" v-model="selected_option_two">
         <option disabled value="">Please select one</option>
         <option>{{willing}}</option>
@@ -34,32 +34,6 @@
 </template>
 
 <script>
-// import Vue from 'vue'
-// var vm = new Vue({
-//   name: 'subjectInterest',
-//   data: {
-//     hasParkinsons: 'have parkinsons',
-//     willing: 'this study to help further the research on Parkinsons',
-//     selected: '',
-//     selected_option_two: '',
-//     seen: true
-//   },
-//   methods: {
-//     clicked: function () {
-//       // if (this.selected === this.hasParkinsons && !this.seen) {
-//       //   this.seen = true
-//       // }
-//       console.log('>>>>')
-//       console.log(this.selected === this.hasParkinsons)
-//       console.log(this.hasParkinsons)
-//       console.log('')
-//       if (this.selected_option_two === this.willing && this.seen) {
-//         window.location.href += `Eligibility`
-//       }
-//     }
-//   }
-// })
-// vm.seen = vm.seen
 export default {
   name: 'subjectInterest',
   data () {
@@ -71,11 +45,13 @@ export default {
       seen: false
     }
   },
+  watch: {
+    selected: function () {
+      this.seen = this.selected === this.hasParkinsons && !this.seen
+    }
+  },
   methods: {
     clicked: function () {
-      if (this.selected === this.hasParkinsons && !this.seen) {
-        this.seen = true
-      }
       if (this.selected_option_two === this.willing && this.seen) {
         window.location.href += `Eligibility`
       }
