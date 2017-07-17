@@ -8,6 +8,7 @@
     <br>
   
     <div class="row">
+      <!-- Field input one -->
       <div class="input-group col-md-4 offset-md-2">
         <label class="form-input-label mr-2 inputLabel"> I am </label>
         <input v-model.number="age" type="number" class="form-control ml-0 " id="ageField" placeholder="enter age" min=0 max=100>
@@ -18,14 +19,12 @@
       </div>
   
       <!--Field input two-->
-      
       <div v-if="ageAnswered && !notOldEnough" class="input-group col-md-4">
         <label class="form-input-label mr-2 inputLabel"> I live in </label>
         <input v-model="place" id="placeField" class="form-control" type="text" placeholder="enter zip"></input>
       </div>
     </div>
 
-    <br >
       <!--Field input three-->
     <div class="row">
       <div class="col-md-12 input-group" v-if="placeAnswered">
@@ -38,11 +37,14 @@
       </div>
     </div>
 
-    <div class="row hidden-sm-up">
+    <!-- For xs devices to display last piece of text-->
+    <div class="row hidden-sm-up" v-if="placeAnswered">
       <div class="col-12">
             <div class="feelLabel col-12"> using my mobile device </div>
       </div>
     </div>
+
+
     <div class="row">
         <br>
         <br>
@@ -63,13 +65,17 @@ export default {
   data () {
     return {
       age: '',
-      ageAnswered: true,
+      ageAnswered: false,
       place: '',
-      placeAnswered: true,
-      isEligible: true,
+      placeAnswered: false,
       notOldEnough: false,
       comfortable: 'comfortable',
       selectedOption: ''
+    }
+  },
+  computed: {
+    isEligible: function () {
+      return !this.notOldEnough && this.placeAnswered && (this.selectedOption === this.comfortable)
     }
   },
   watch: {
@@ -79,12 +85,15 @@ export default {
     },
     place: function () {
       this.placeAnswered = (this.place !== '')
+    },
+    selectedOption: function () {
     }
   },
   methods: {
     clicked () {
-      if (this.age) {
-        console.log('clicked')
+      if (this.isEligible) {
+        var location = window.location.href.replace('Eligibility', 'Congratulations')
+        window.location.href = location
       }
     }
   }

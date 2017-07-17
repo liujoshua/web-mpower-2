@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import SubjectInterest from '@/components/SubjectInterest.vue'
 import Eligibility from '@/components/Eligibility.vue'
-import congratulations from '@/components/congratulations.vue'
+import Congratulations from '@/components/Congratulations.vue'
 
 Vue.use(Router)
 
@@ -19,9 +19,9 @@ export default new Router({
       component: Eligibility
     },
     {
-      path: '/congratulations',
-      name: 'congratulations',
-      component: congratulations
+      path: '/Congratulations',
+      name: 'Congratulations',
+      component: Congratulations
     }
   ]
 })

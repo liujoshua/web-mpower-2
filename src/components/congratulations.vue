@@ -1,39 +1,35 @@
 <template>
 
 
-  <section class="container">
+  <div class="page-overview">
 
-    <div>
+    <div class="d-flex flex-sm-wrap flex-wrap flex-md-nowrap flex-lg-nowrap">
 
-      <img src="../assets/check.png" alt="image of a check marked circle">
+      <div class="flex-first ">
+        <img src="../assets/check.png" class="img-fluid"  alt="image of a check marked circle">
+      </div>
 
-    </div>
-
-    <div>
-
-      <p> Congratulations, you're eligible! </p>
-      <br>
-      <br>
-      <p class="tiny"> It's now time for consent, how does it work? </p>
-      <br>
-      <br>
-      <p class="regular">
-        There will be 13 sections in the consent process. These
-        sections will help you to understand what is involved and how the study will
-        work, After the consent introduction, there will be a short quix on what
-        you have learned about the study.
-      </p>
-      <br>
-      <br>
-      <button> I'D LIKE A WALKTHROUGH </button>
-      <br>
-      <br>
-      <button> GO STRAIGHT TO QUIZ </button>
-
+      <div class="flex-last">
+        <p> Congratulations, you're eligible! </p>
+        <br>
+        <br>
+        <p class="tiny"> It's now time for consent, how does it work? </p>
+        <br>
+        <br>
+        <p class="regular">
+          There will be 13 sections in the consent process. These
+          sections will help you to understand what is involved and how the study will
+          work, After the consent introduction, there will be a short quix on what
+          you have learned about the study.
+        </p>
+        <br>
+        <br>
+        <button> I'D LIKE A WALKTHROUGH </button>
+      </div>
     </div>
 
 
-  </section>
+  </div>
 
 </template>
 
