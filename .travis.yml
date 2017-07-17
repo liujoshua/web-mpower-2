@@ -17,12 +17,18 @@ before_script:
   - jdk_switcher use oraclejdk8
 # End Selenium-fixes
 
+after_success:
+  - npm run build
+
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: $AWS_S3_BUCKET
   upload-dir: $TRAVIS_BRANCH
+  skip_cleanup: true
+  on:
+    all_branches: true
 cache:
   directories:
     - "node_modules"
