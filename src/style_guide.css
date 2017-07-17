@@ -6,6 +6,9 @@ html * {
     font-size: 24px !important;
 }
 
+#comfortable {
+    margin-left: 0px;
+}
 .feelLabel {
     font-size: 24px;
     padding-left: 1px;
@@ -19,9 +22,14 @@ html * {
         width: 76%;
         margin-left: 12%; 
     }
+
+    .pageTwo.tiny {
+        color: grey;
+        font-weight: bold;
+    }
+
      .pageOne {
         font-size: 22px !important;
-    
         margin-left: 0%;
         font-size: 22px;
     }

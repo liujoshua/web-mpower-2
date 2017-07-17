@@ -5,11 +5,11 @@
 
     <div class="d-flex flex-sm-wrap flex-wrap flex-md-nowrap flex-lg-nowrap">
 
-      <div class="flex-first ">
+      <div class="flex-first col-sm-5 col-12">
         <img src="../assets/check.png" class="img-fluid"  alt="image of a check marked circle">
       </div>
 
-      <div class="flex-last">
+      <div class="flex-last col-sm-7 col-12">
         <p> Congratulations, you're eligible! </p>
         <br>
         <br>

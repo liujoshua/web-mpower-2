@@ -26,10 +26,10 @@
     </div>
 
       <!--Field input three-->
-    <div class="row">
-      <div class="col-md-12 input-group" v-if="placeAnswered">
+    <div class="row" v-if="placeAnswered">
+      <div class="col-md-12 input-group" >
         <div class="feelLabel col-4 col-sm-2 col-md-2 offset-md-2"> and I feel </div>
-        <select class="custom-select col-8 col-sm-4 col-md-2 ml-0 mr-0" id="comfortable" placeholder="please select one" v-model="selectedOption">
+        <select class="custom-select col-8 col-sm-4 col-md-2" id="comfortable" placeholder="please select one" v-model="selectedOption">
           <option disabled value="">Please select</option>
           <option>{{comfortable}}</option>
         </select>        
@@ -43,6 +43,10 @@
             <div class="feelLabel col-12"> using my mobile device </div>
       </div>
     </div>
+
+   <br>
+   <br>
+   <br>
 
 
     <div class="row">
@@ -59,18 +63,21 @@
 <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 
 <script>
+// start page focused on age field
+window.onload = function () {
+  document.getElementById('ageField').focus()
+}
 
 export default {
-
   data () {
     return {
       age: '',
-      ageAnswered: false,
       place: '',
       placeAnswered: false,
       notOldEnough: false,
       comfortable: 'comfortable',
-      selectedOption: ''
+      selectedOption: '',
+      ageAnswered: false
     }
   },
   computed: {
@@ -82,11 +89,11 @@ export default {
     age: function () {
       this.notOldEnough = this.age < 18
       this.ageAnswered = true
+      this.focusElement(this.notOldEnough, 'placeField')
     },
     place: function () {
       this.placeAnswered = (this.place !== '')
-    },
-    selectedOption: function () {
+      this.focusElement(this.placeAnswered, 'comfortable')
     }
   },
   methods: {
@@ -95,7 +102,19 @@ export default {
         var location = window.location.href.replace('Eligibility', 'Congratulations')
         window.location.href = location
       }
+    },
+    focusElement (canShow, idName) {
+      if (!canShow) {
+        return
+      }
+      var interval = setInterval(function () {
+        if (document.getElementById(idName)) {
+          document.getElementById(idName).focus()
+          clearInterval(interval)
+        }
+      }, 100)
     }
+
   }
 }
 
