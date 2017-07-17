@@ -1,11 +1,11 @@
 <template>
 
     <div class="page-overview">
-      <div class="pageOne col-md-8 offset-md-4" > I'm interested in joining mPower because I </div>
+      <div class="pageOne col-md-8" > I'm interested in joining mPower because I </div>
     <br>
     <br>
   
-    <select class="col-md-8 offset-md-4 custom-select customizedSelect" id="select_one" v-model="selected_option_one">
+    <select class="col-md-8 offset-md-2 custom-select customizedSelect" id="select_one" v-model="selected_option_one">
       <option disabled value="">Please select one</option>
       <option> {{ parkinsonsMessage }}</option>
     </select>
@@ -33,7 +33,7 @@
 <script>
 // focus on selection one on page load
 window.onload = function () {
-  document.getElementById('select_one').focus()
+  this.focusElement(true, 'select_one')
 }
 
 export default {
@@ -56,25 +56,29 @@ export default {
   watch: {
     selected_option_one: function () {
       this.hasParkinsons = (this.selected_option_one === this.parkinsonsMessage)
-      if (this.hasParkinsons) {
-        // wait for element to render then focus in on it
-        var interval = setInterval(function () {
-          if (document.getElementById('select_two')) {
-            document.getElementById('select_two').focus()
-            clearInterval(interval)
-          }
-        }, 100)
-      }
+      // wait for element to render then focus in on it
+      this.focusElement(this.hasParkinsons, 'select_two')
     },
     selected_option_two: function () {
       this.isInterested = (this.selected_option_two === this.willing)
     }
   },
   methods: {
-    clicked: function () {
+    clicked () {
       if (this.isEligible) {
         window.location.href += `Eligibility`
       }
+    },
+    focusElement (canShow, idName) {
+      if (!canShow) {
+        return
+      }
+      var interval = setInterval(function () {
+        if (document.getElementById(idName)) {
+          document.getElementById(idName).focus()
+          clearInterval(interval)
+        }
+      }, 100)
     }
   }
 }

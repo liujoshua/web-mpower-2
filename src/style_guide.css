@@ -1,5 +1,9 @@
 html * {
-    color: #31117D;
+    color: #5B34B6;
+}
+
+.customizedSelect option {
+    font-size: 40px !important;
 }
 
 .inputLabel {
@@ -16,6 +20,9 @@ html * {
     margin-right: 1px;
 }
 
+.customizedSelect {
+    border-style: none none solid none;
+}
 /* For extra small and medium sized devices */
 @media (max-width: 767px) { 
     .customizedSelect {
@@ -75,8 +82,8 @@ html * {
     }
 
     .customizedSelect {
-        width: 26%;
-        margin-left: 30%;
+        width: 55%;
+        margin-left: 20%;
     }
 
      button#next {
@@ -93,13 +100,13 @@ html * {
 }
 
 .customNav {
-    background-color: white !important;
-    background-color: inherit;
     border-bottom-style: solid;
     border-bottom-color: grey;
     position: fixed;
     margin-bottom: 80px;
     width: 100%;
+    background-color: #FFFFFF !important;
+    box-shadow: 0 2px 3px 0 rgba(141,141,141,0.5);
 }
 
 .footer {
@@ -118,7 +125,8 @@ hr {
 }
 
 .check {
-    background-color: #E0F2E1;    
+    background-color: yellow;
+    background-image: url("./images/ic_check_circle_white_48px.svg");
 }
 
 div .flex-last p {
@@ -128,7 +136,7 @@ div .flex-last p {
 
 nav img {
     border-radius: 50%;
-    background-color: gray;
+    background-color: rgba(65,73,90,0.1); 
     margin-left: 2px;
     margin-right: 2px;
     width: 55px;
@@ -197,7 +205,7 @@ option {
     font-size: 24px;
 }
 
-select {
+/*select {
     width: 55%;
     margin-left: 24%;
     padding: 16px 25px;
@@ -205,7 +213,10 @@ select {
     border-radius: 4px;
     font-size: 20px;    
     font-family: "Open Sans",open-sans,sans-serif;
+}*/
 
+select {
+    border-style: none none solid none;
 }
 
 button {
