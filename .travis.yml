@@ -22,6 +22,7 @@ after_success:
 
 deploy:
   provider: s3
+  acl: public_read
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: $AWS_S3_BUCKET
