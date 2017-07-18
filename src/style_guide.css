@@ -179,6 +179,9 @@ option {
 
 select {
     border-style: none none solid none;
+    word-break: break-word;
+    white-space: nowrap;
+
 }
 
 button {

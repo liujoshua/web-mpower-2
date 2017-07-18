@@ -34,10 +34,14 @@
     <div class="row input-group" v-if="isPlaceAnswered">
       <label class="col-6 form-input-label inputLabel col-md-2 offset-md-2"> and I feel </label>
       <!--TODO: Fix allignment for medium screens where specific breakpoint makes un asthetic gap between label
-      and the select field-->
+      and the select field-->    
       <select class="col-6 custom-select text-md-right col-md-2" id="comfortable" placeholder="please select one" v-model="selectedComfortableOption">
+        <!--TODO: Fill in with actual values-->
+        <!--TODO: Find a way to wrap the text on mobile devices-->
         <option disabled value="">Please select</option>
-        <option>{{comfortable}}</option>
+        <option> comfortable </option>
+        <option> weary </option>
+        <option> uncomfortable </option>
       </select>       
       <label class="form-input-label inputLabel col-12 col-md-6"> using my mobile device </label>
     </div>
@@ -70,7 +74,6 @@ export default {
     return {
       age: '',
       zipCode: '',
-      comfortable: 'comfortable',
       selectedComfortableOption: ''
     }
   },
@@ -86,7 +89,7 @@ export default {
       return (this.zipCode !== '' && this.zipCode.length >= 5)
     },
     isEligible: function () {
-      return !this.isUnderage && this.isPlaceAnswered && (this.selectedComfortableOption === this.comfortable)
+      return !this.isUnderage && this.isPlaceAnswered && (this.selectedComfortableOption !== '')
     }
   },
   watch: {

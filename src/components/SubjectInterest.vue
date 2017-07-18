@@ -11,7 +11,13 @@
     <div class="row">
     <select class="col-md-6 offset-md-2 custom-select customizedSelect" id="selectOne" v-model="selectedOptionOne">
       <option disabled value="">Please select one</option>
-      <option> {{ parkinsonsMessage }}</option>
+      <!--TODO: Fill in with actual values-->
+      <!--TODO: Find a way to wrap the text on mobile devices-->
+      <option> have parkinsons </option>
+      <option> have another movement disorder </option>
+      <option> would like to be a control subject </option>
+      <option> am a researcher reviewing the study </option>
+      <optgroup label=""> </optgroup>
     </select>
     </div>
   
@@ -20,7 +26,7 @@
     <br class="visible-md-up"> 
   
   
-    <div class="row" v-if="hasParkinsons" >
+    <div class="row" v-if="isInterested" >
       <div class="pageOne col-md-8 offset-md-2"> and I would be willing to try </div>
       <br class="visible-md-up"> 
       <br class="visible-md-up"> 
@@ -28,7 +34,9 @@
 
       <select class="custom-select col-md-6 offset-md-2 customizedSelect" id="selectTwo" v-model="selectedOptionTwo">
         <option disabled value="">Please select one</option>
-        <option>{{willingMessage}}</option>
+        <!--TODO: Fill in with actual values-->
+        <option> this study </option>
+        <option> parts of this study </option>
       </select>
     </div>
   
@@ -49,30 +57,28 @@ export default {
   name: 'subjectInterest',
   data () {
     return {
-      parkinsonsMessage: 'have parkinsons',
-      willingMessage: 'this study',
       selectedOptionOne: '',
       selectedOptionTwo: ''
     }
   },
   computed: {
     isEligible: function () {
-      return (this.hasParkinsons && this.isInterested)
+      return (this.isInterested && this.isWilling)
     },
     // TODO- Change functionality
     // needs modified functionality, will update once more information about
     // other possible choices
-    hasParkinsons: function () {
-      return (this.selectedOptionOne === this.parkinsonsMessage)
-    },
     isInterested: function () {
-      return (this.selectedOptionTwo === this.willingMessage)
+      return (this.selectedOptionOne !== '')
+    },
+    isWilling: function () {
+      return (this.selectedOptionTwo !== '')
     }
   },
   watch: {
-    hasParkinsons: function () {
+    isInterested: function () {
       // wait for element to render then focus in on it
-      this.focusElement(this.hasParkinsons, 'selectTwo')
+      this.focusElement(this.isInterested, 'selectTwo')
     }
   },
   methods: {
