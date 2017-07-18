@@ -19,15 +19,22 @@
       </div>
   
       <!--Field input two-->
-      <div v-if="isAgeAnswered && !isUnderage" class="input-group col-md-4">
+      <div v-if="isUnderage !== null && !isUnderage" class="input-group col-md-4">
         <label class="form-input-label mr-2 inputLabel"> I live in </label>
-        <input v-model="zipCode"  id="placeField" class="form-control" type="number" pattern="\d*" placeholder="enter zip"></input>
+        <input v-model="zipCode"  id="placeField" class="form-control" type="number" pattern="\d*" placeholder="enter 5-digit zipcode"></input>
       </div>
     </div>
+
+    <!--TODO: incorporate error message without immediately prompting the user -->
+    <!--<div v-if="zipCode !== '' && zipCode.length < 5" class="alert alert-danger col-md-4 offset-md-4" role="alert">
+      <strong>Sorry.</strong> Unrecognized zipcode, if there is a mistake please email sagebase.org
+    </div>-->
 
       <!--Field input three-->
     <div class="row input-group" v-if="isPlaceAnswered">
       <label class="col-6 form-input-label inputLabel col-md-2 offset-md-2"> and I feel </label>
+      <!--TODO: Fix allignment for medium screens where specific breakpoint makes un asthetic gap between label
+      and the select field-->
       <select class="col-6 custom-select text-md-right col-md-2" id="comfortable" placeholder="please select one" v-model="selectedComfortableOption">
         <option disabled value="">Please select</option>
         <option>{{comfortable}}</option>
@@ -63,26 +70,30 @@ export default {
     return {
       age: '',
       zipCode: '',
-      isPlaceAnswered: false,
-      isUnderage: null,
       comfortable: 'comfortable',
-      selectedComfortableOption: '',
-      isAgeAnswered: false
+      selectedComfortableOption: ''
     }
   },
   computed: {
+    isUnderage: function () {
+      if (this.age === '') {
+        return null
+      } else {
+        return this.age < 18
+      }
+    },
+    isPlaceAnswered: function () {
+      return (this.zipCode !== '' && this.zipCode.length >= 5)
+    },
     isEligible: function () {
       return !this.isUnderage && this.isPlaceAnswered && (this.selectedComfortableOption === this.comfortable)
     }
   },
   watch: {
-    age: function () {
-      this.isUnderage = this.age < 18
-      this.isAgeAnswered = true
+    isUnderage: function () {
       this.focusElement(this.isUnderage, 'placeField')
     },
-    zipCode: function () {
-      this.isPlaceAnswered = (this.zipCode !== '')
+    isPlaceAnswered: function () {
       this.focusElement(this.isPlaceAnswered, 'comfortable')
     }
   },

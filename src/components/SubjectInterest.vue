@@ -60,27 +60,30 @@ export default {
   computed: {
     isEligible: function () {
       return (this.hasParkinsons && this.isInterested)
+    },
+    // TODO- Change functionality
+    // needs modified functionality, will update once more information about
+    // other possible choices
+    hasParkinsons: function () {
+      return (this.selectedOptionOne === this.parkinsonsMessage)
+    },
+    isInterested: function () {
+      return (this.selectedOptionTwo === this.willingMessage)
     }
   },
   watch: {
-    selectedOptionOne: function () {
-      // needs modified functionality, will update once more information about
-      // other possible choices
-      this.hasParkinsons = (this.selectedOptionOne === this.parkinsonsMessage)
+    hasParkinsons: function () {
       // wait for element to render then focus in on it
       this.focusElement(this.hasParkinsons, 'selectTwo')
-    },
-    selectedOptionTwo: function () {
-      this.isInterested = (this.selectedOptionTwo === this.willingMessage)
     }
   },
   methods: {
     clicked () {
       if (this.isEligible) {
-        // window.location.href += `Eligibility`
         this.$router.push('Eligibility')
       }
     },
+    // wait for element to render and then show it if that should take place
     focusElement (canShow, idName) {
       if (!canShow) {
         return
