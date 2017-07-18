@@ -2,7 +2,7 @@
 
     <div class="page-overview">
       <div class="row">
-      <div class="pageOne col-md-8 md-offset-2" > I'm interested in joining mPower because I </div>
+      <div class="pageOne col-md-8 md-offset-2" > I'm interested in joining the mPower study because I </div>
       </div>
 
     <br class="visible-md-up"> 
