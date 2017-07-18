@@ -1,39 +1,40 @@
-html * {
+body * {
     color: #5B34B6;
-}
-
-.customizedSelect option {
-    font-size: 40px !important;
 }
 
 .inputLabel {
     font-size: 24px !important;
 }
 
+input {
+    border-style: none none solid none !important;
+    text-align: center;
+}
+
 #comfortable {
     margin-left: 0px;
-}
-.feelLabel {
-    font-size: 24px;
-    padding-left: 1px;
-    padding-right: 1px;
-    margin-right: 1px;
+    border-style: none none solid none !important;
 }
 
 .customizedSelect {
     border-style: none none solid none;
+    font-size: 22px;
 }
+
+.pageTwo {
+    font-size: 27px;
+}
+.pageTwo.tiny {    
+    color: #3B4A63;	
+    font-family: "San Francisco Text";	
+    font-size: 23px !important;
+    font-weight: 600;	
+    line-height: 35px;
+    text-align: center;
+}
+
 /* For extra small and medium sized devices */
 @media (max-width: 767px) { 
-    .customizedSelect {
-        width: 76%;
-        margin-left: 12%; 
-    }
-
-    .pageTwo.tiny {
-        color: grey;
-        font-weight: bold;
-    }
 
      .pageOne {
         font-size: 22px !important;
@@ -69,29 +70,13 @@ html * {
         margin: auto;
     }
 
-    .pageTwo {
-        font-size: 30px !important;
-        font-size: 22px;
-        text-align: center;
-    }
-
-    .pageTwo.tiny {
-        color: grey;
-        font-weight: bold;
-        font-size: 20px !important;
-    }
-
-    .customizedSelect {
-        width: 55%;
-        margin-left: 20%;
-    }
-
      button#next {
         margin-left: 40%;
         width: 20%;
-        bottom: 0%; 
+        bottom: 5%; 
         position: fixed;
         z-index:1000; 
+        font-size: 30px;
     }
 }
 
@@ -117,22 +102,9 @@ html * {
     padding: 0px;
 }
 
-hr {
-    border: solid 0.3px;
-    border-radius: 4px;
-    box-shadow: 0px 0px 1px #888888;
-    border-color: #dee4ed;
-}
-
 .check {
-    background-color: yellow;
     background-image: url("./images/ic_check_circle_white_48px.svg");
 }
-
-div .flex-last p {
-    margin-left: 0px !important;
-}
-
 
 nav img {
     border-radius: 50%;
@@ -151,9 +123,9 @@ h2 {
   font-size: 14px;
   color: lightgray;
 }
+
 div.overview { 
     font-family: "Open Sans",open-sans,sans-serif;
-
 }
 
 p {
@@ -170,11 +142,11 @@ label {
     display: inline;
 }
 p.regular {
-    color:gray;
+    color:#3B4A63;
     font-size: 20px;
 }
 p.tiny {
-    color:gray;
+    color:#3B4A63;
     font-weight: bold;
 }
 
@@ -205,15 +177,6 @@ option {
     font-size: 24px;
 }
 
-/*select {
-    width: 55%;
-    margin-left: 24%;
-    padding: 16px 25px;
-    border-style: none none solid none;
-    border-radius: 4px;
-    font-size: 20px;    
-    font-family: "Open Sans",open-sans,sans-serif;
-}*/
 
 select {
     border-style: none none solid none;
@@ -229,4 +192,5 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    text-transform: uppercase;
 }

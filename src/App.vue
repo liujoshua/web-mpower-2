@@ -5,11 +5,11 @@
         <nav class="navbar fixed-top navbar-light bg-faded customNav">
             <div class="navbar-header">
                 <div class="row">
-                    <div class="col-md-4 hidden-sm-down">
-                        <h1> mPower </h1>
-                    </div>
-                    <div class="col-md-4 col-12 hidden-md-up" align="center">
-                        <h1> mPower </h1>
+                    <div class="col-12 text-left text-center text-md-left col-md-4">
+                        <!-- making the name a hyperlink is for dev purposes.
+                        so that getting to main page is easy, will replace or change
+                        at a later time -->
+                        <h1> <a href="#"> mPower </a> </h1> 
                     </div>
     
                     <div class="col-md-8 hidden-sm-down" align="right">

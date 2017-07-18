@@ -1,25 +1,34 @@
 <template>
 
     <div class="page-overview">
-      <div class="pageOne col-md-8" > I'm interested in joining mPower because I </div>
-    <br>
-    <br>
+      <div class="row">
+      <div class="pageOne col-md-8 md-offset-2" > I'm interested in joining mPower because I </div>
+      </div>
+
+    <br class="visible-md-up"> 
+    <br class="visible-md-up"> 
   
-    <select class="col-md-8 offset-md-2 custom-select customizedSelect" id="select_one" v-model="selected_option_one">
+    <div class="row">
+    <select class="col-md-6 offset-md-2 custom-select customizedSelect" id="selectOne" v-model="selectedOptionOne">
       <option disabled value="">Please select one</option>
       <option> {{ parkinsonsMessage }}</option>
     </select>
+    </div>
   
-    <br>
-    <br>
+
+    <br class="visible-md-up"> 
+    <br class="visible-md-up"> 
   
-    <div v-if="hasParkinsons" >
-      <div class="pageOne col-md-8 offset-md-4"> and I would be willing to try </div>
-      <br>
-      <br>
-      <select class="custom-select customizedSelect" id="select_two" v-model="selected_option_two">
+  
+    <div class="row" v-if="hasParkinsons" >
+      <div class="pageOne col-md-8 offset-md-2"> and I would be willing to try </div>
+      <br class="visible-md-up"> 
+      <br class="visible-md-up"> 
+      <br class="visible-md-up"> 
+
+      <select class="custom-select col-md-6 offset-md-2 customizedSelect" id="selectTwo" v-model="selectedOptionTwo">
         <option disabled value="">Please select one</option>
-        <option>{{willing}}</option>
+        <option>{{willingMessage}}</option>
       </select>
     </div>
   
@@ -33,7 +42,7 @@
 <script>
 // focus on selection one on page load
 window.onload = function () {
-  this.focusElement(true, 'select_one')
+  this.focusElement(true, 'selectOne')
 }
 
 export default {
@@ -41,9 +50,9 @@ export default {
   data () {
     return {
       parkinsonsMessage: 'have parkinsons',
-      willing: 'this study',
-      selected_option_one: '',
-      selected_option_two: '',
+      willingMessage: 'this study',
+      selectedOptionOne: '',
+      selectedOptionTwo: '',
       hasParkinsons: false,
       isInterested: false
     }
@@ -54,19 +63,22 @@ export default {
     }
   },
   watch: {
-    selected_option_one: function () {
-      this.hasParkinsons = (this.selected_option_one === this.parkinsonsMessage)
+    selectedOptionOne: function () {
+      // needs modified functionality, will update once more information about
+      // other possible choices
+      this.hasParkinsons = (this.selectedOptionOne === this.parkinsonsMessage)
       // wait for element to render then focus in on it
-      this.focusElement(this.hasParkinsons, 'select_two')
+      this.focusElement(this.hasParkinsons, 'selectTwo')
     },
-    selected_option_two: function () {
-      this.isInterested = (this.selected_option_two === this.willing)
+    selectedOptionTwo: function () {
+      this.isInterested = (this.selectedOptionTwo === this.willingMessage)
     }
   },
   methods: {
     clicked () {
       if (this.isEligible) {
-        window.location.href += `Eligibility`
+        // window.location.href += `Eligibility`
+        this.$router.push('Eligibility')
       }
     },
     focusElement (canShow, idName) {

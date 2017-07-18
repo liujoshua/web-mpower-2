@@ -1,53 +1,43 @@
 <template>
   <div class="page-overview">
   
-    <div class="pageTwo"> You would be a great fit for the mPower study! </div>
+    <div class="pageTwo text-left text-md-center"> You would be a great fit for the mPower study! </div>
     <br>
-    <div class="pageTwo tiny"> We'd just like to know a couple more things about you to make sure you're eligible </div>
+    <div class="pageTwo tiny text-left text-md-center"> We'd just like to know a couple more things about you to make sure you're eligible </div>
     <br>
     <br>
   
     <div class="row">
       <!-- Field input one -->
       <div class="input-group col-md-4 offset-md-2">
-        <label class="form-input-label mr-2 inputLabel"> I am </label>
-        <input v-model.number="age" type="number" class="form-control ml-0 " id="ageField" placeholder="enter age" min=0 max=100>
+        <label class="form-input-label inputLabel"> I am </label>
+        <input v-model.number="age" type="number" pattern="\d*" class="form-control" id="ageField" placeholder="enter age" min=0 max=100>
       </div>
   
-      <div v-if="notOldEnough" class="alert alert-danger col-md-4 offset-md-4" role="alert">
+      <div v-if="isUnderage" class="alert alert-danger col-md-4 offset-md-4" role="alert">
         <strong>Sorry.</strong> Participants must be at least 18 years of age to register.
       </div>
   
       <!--Field input two-->
-      <div v-if="ageAnswered && !notOldEnough" class="input-group col-md-4">
+      <div v-if="isAgeAnswered && !isUnderage" class="input-group col-md-4">
         <label class="form-input-label mr-2 inputLabel"> I live in </label>
-        <input v-model="place" id="placeField" class="form-control" type="text" placeholder="enter zip"></input>
+        <input v-model="zipCode"  id="placeField" class="form-control" type="number" pattern="\d*" placeholder="enter zip"></input>
       </div>
     </div>
 
       <!--Field input three-->
-    <div class="row" v-if="placeAnswered">
-      <div class="col-md-12 input-group" >
-        <div class="feelLabel col-4 col-sm-2 col-md-2 offset-md-2"> and I feel </div>
-        <select class="custom-select col-8 col-sm-4 col-md-2" id="comfortable" placeholder="please select one" v-model="selectedOption">
-          <option disabled value="">Please select</option>
-          <option>{{comfortable}}</option>
-        </select>        
-        <div class="feelLabel col-md-9 col-sm-6 ml-3 hidden-xs-down"> using my mobile device </div>
-      </div>
-    </div>
-
-    <!-- For xs devices to display last piece of text-->
-    <div class="row hidden-sm-up" v-if="placeAnswered">
-      <div class="col-12">
-            <div class="feelLabel col-12"> using my mobile device </div>
-      </div>
+    <div class="row input-group" v-if="isPlaceAnswered">
+      <label class="col-6 form-input-label inputLabel col-md-2 offset-md-2"> and I feel </label>
+      <select class="col-6 custom-select text-md-right col-md-2" id="comfortable" placeholder="please select one" v-model="selectedComfortableOption">
+        <option disabled value="">Please select</option>
+        <option>{{comfortable}}</option>
+      </select>       
+      <label class="form-input-label inputLabel col-12 col-md-6"> using my mobile device </label>
     </div>
 
    <br>
    <br>
    <br>
-
 
     <div class="row">
         <br>
@@ -72,35 +62,34 @@ export default {
   data () {
     return {
       age: '',
-      place: '',
-      placeAnswered: false,
-      notOldEnough: false,
+      zipCode: '',
+      isPlaceAnswered: false,
+      isUnderage: null,
       comfortable: 'comfortable',
-      selectedOption: '',
-      ageAnswered: false
+      selectedComfortableOption: '',
+      isAgeAnswered: false
     }
   },
   computed: {
     isEligible: function () {
-      return !this.notOldEnough && this.placeAnswered && (this.selectedOption === this.comfortable)
+      return !this.isUnderage && this.isPlaceAnswered && (this.selectedComfortableOption === this.comfortable)
     }
   },
   watch: {
     age: function () {
-      this.notOldEnough = this.age < 18
-      this.ageAnswered = true
-      this.focusElement(this.notOldEnough, 'placeField')
+      this.isUnderage = this.age < 18
+      this.isAgeAnswered = true
+      this.focusElement(this.isUnderage, 'placeField')
     },
-    place: function () {
-      this.placeAnswered = (this.place !== '')
-      this.focusElement(this.placeAnswered, 'comfortable')
+    zipCode: function () {
+      this.isPlaceAnswered = (this.zipCode !== '')
+      this.focusElement(this.isPlaceAnswered, 'comfortable')
     }
   },
   methods: {
     clicked () {
       if (this.isEligible) {
-        var location = window.location.href.replace('Eligibility', 'Congratulations')
-        window.location.href = location
+        this.$router.push('Congratulations')
       }
     },
     focusElement (canShow, idName) {
