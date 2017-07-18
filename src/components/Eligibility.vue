@@ -62,7 +62,7 @@
 <script>
 // start page focused on age field
 window.onload = function () {
-  document.getElementById('ageField').focus()
+  this.focusElement(true, 'ageField')
 }
 
 export default {

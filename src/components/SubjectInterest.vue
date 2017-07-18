@@ -52,9 +52,7 @@ export default {
       parkinsonsMessage: 'have parkinsons',
       willingMessage: 'this study',
       selectedOptionOne: '',
-      selectedOptionTwo: '',
-      hasParkinsons: false,
-      isInterested: false
+      selectedOptionTwo: ''
     }
   },
   computed: {

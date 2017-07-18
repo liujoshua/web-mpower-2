@@ -9,7 +9,7 @@
         <img src="../assets/check.png" class="img-fluid"  alt="image of a check marked circle">
       </div>
 
-      <div class="col-sm-7 col-12">
+      <div class="col-sm-7 text-left col-12">
         <p> Congratulations, you're eligible! </p>
         <br>
         <br>
