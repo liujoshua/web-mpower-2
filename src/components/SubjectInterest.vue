@@ -93,7 +93,6 @@ export default {
       if (!canShow) {
         return
       }
-      document.getElementById(idName).focus()
       var interval = setInterval(function () {
         if (document.getElementById(idName)) {
           document.getElementById(idName).focus()
