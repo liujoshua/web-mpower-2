@@ -11,17 +11,17 @@
       <!-- Field input one -->
       <div class="input-group col-md-4 offset-md-2">
         <label class="form-input-label inputLabel"> I am </label>
-        <input v-model.number="age" type="number" pattern="\d*" class="form-control" id="ageField" placeholder="enter age" min=0 max=100>
+        <input v-model.number="age" type="number" pattern="\d*" class="form-control inputLabel" id="ageField" placeholder="enter age" min=0 max=100>
       </div>
   
-      <div v-if="isUnderage" class="alert alert-danger col-md-4 offset-md-4" role="alert">
+      <div v-if="isUnderage" class="alert alert-danger col-md-4 offset-md-4 inputLabel" role="alert">
         <strong>Sorry.</strong> Participants must be at least 18 years of age to register.
       </div>
   
       <!--Field input two-->
       <div v-if="isUnderage !== null && !isUnderage" class="input-group col-md-4">
         <label class="form-input-label mr-2 inputLabel"> I live in </label>
-        <input v-model="zipCode"  id="placeField" class="form-control" type="number" pattern="\d*" placeholder="enter 5-digit zipcode"></input>
+        <input v-model="zipCode"  id="placeField" class="form-control inputLabel" type="number" pattern="\d*" placeholder="enter 5-digit zipcode"></input>
       </div>
     </div>
 
@@ -35,7 +35,7 @@
       <label class="col-6 form-input-label inputLabel col-md-2 offset-md-2"> and I feel </label>
       <!--TODO: Fix allignment for medium screens where specific breakpoint makes un asthetic gap between label
       and the select field-->    
-      <select class="col-6 custom-select text-md-right col-md-2" id="comfortable" placeholder="please select one" v-model="selectedComfortableOption">
+      <select class="col-6 custom-select text-md-right col-md-2" id="comfortable" placeholder="please select one" v-model="selectedOptionForPhone">
         <!--TODO: Fill in with actual values-->
         <!--TODO: Find a way to wrap the text on mobile devices-->
         <option disabled value="">Please select</option>
@@ -64,17 +64,12 @@
 <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 
 <script>
-// start page focused on age field
-window.onload = function () {
-  this.focusElement(true, 'ageField')
-}
-
 export default {
   data () {
     return {
       age: '',
       zipCode: '',
-      selectedComfortableOption: ''
+      selectedOptionForPhone: ''
     }
   },
   computed: {
@@ -86,10 +81,14 @@ export default {
       }
     },
     isPlaceAnswered: function () {
+      console.log('looking ')
       return (this.zipCode !== '' && this.zipCode.length >= 5)
     },
+    hasChosenOption: function () {
+      return (this.selectedOptionForPhone !== '')
+    },
     isEligible: function () {
-      return !this.isUnderage && this.isPlaceAnswered && (this.selectedComfortableOption !== '')
+      return (!this.isUnderage && this.isPlaceAnswered && this.hasChosenOption)
     }
   },
   watch: {
@@ -98,6 +97,10 @@ export default {
     },
     isPlaceAnswered: function () {
       this.focusElement(this.isPlaceAnswered, 'comfortable')
+    },
+    isEligible: function () {
+      document.getElementById('next').style.opacity = 1
+      this.focusElement(true, 'next')
     }
   },
   methods: {
@@ -117,14 +120,16 @@ export default {
         }
       }, 100)
     }
-
+  },
+  created: function () {
+    this.focusElement(true, 'ageField')
   }
 }
 
 </script>
 
-<style >
+<style scoped>
 button {
-  opacity: 1;
+  opacity: 0.5;
 }
 </style>

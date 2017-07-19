@@ -10,7 +10,7 @@
   
     <div class="row">
     <select class="col-md-6 offset-md-2 custom-select customizedSelect" id="selectOne" v-model="selectedOptionOne">
-      <option disabled value="">Please select one</option>
+      <option disabled value=""> Select answer </option>
       <!--TODO: Fill in with actual values-->
       <!--TODO: Find a way to wrap the text on mobile devices-->
       <option> have parkinsons </option>
@@ -48,11 +48,6 @@
 </template>
 
 <script>
-// focus on selection one on page load
-window.onload = function () {
-  this.focusElement(true, 'selectOne')
-}
-
 export default {
   name: 'subjectInterest',
   data () {
@@ -79,6 +74,9 @@ export default {
     isInterested: function () {
       // wait for element to render then focus in on it
       this.focusElement(this.isInterested, 'selectTwo')
+    },
+    isEligible: function () {
+      this.focusElement(this.isEligible, 'next')
     }
   },
   methods: {
@@ -99,6 +97,9 @@ export default {
         }
       }, 100)
     }
+  },
+  created: function () {
+    this.focusElement(true, 'selectOne')
   }
 }
 </script>

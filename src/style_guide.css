@@ -1,5 +1,6 @@
 body * {
     color: #5B34B6;
+    
 }
 
 .inputLabel {
@@ -9,6 +10,14 @@ body * {
 input {
     border-style: none none solid none !important;
     text-align: center;
+}
+
+*:focus {
+    /*box-shadow: 0px 1px 0px #5cb3fd;*/
+    -webkit-box-shadow: 0px 0px 29px 3px rgba(92,179,253,0.63);
+    -moz-box-shadow: 0px 0px 29px 3px rgba(92,179,253,0.63);
+    box-shadow: 0px 0px 29px 3px rgba(92,179,253,0.63);
+    /*background-color: yellow !important;*/
 }
 
 #comfortable {
@@ -26,12 +35,13 @@ input {
 }
 .pageTwo.tiny {    
     color: #3B4A63;	
-    font-family: "San Francisco Text";	
     font-size: 23px !important;
     font-weight: 600;	
     line-height: 35px;
     text-align: center;
 }
+
+
 
 /* For extra small and medium sized devices */
 @media (max-width: 767px) { 
@@ -85,8 +95,6 @@ input {
 }
 
 .customNav {
-    border-bottom-style: solid;
-    border-bottom-color: grey;
     position: fixed;
     margin-bottom: 80px;
     width: 100%;
@@ -103,7 +111,8 @@ input {
 }
 
 .check {
-    background-image: url("./images/ic_check_circle_white_48px.svg");
+    background-color: #FFFFFF;
+    box-shadow: 0 0 12px 0 #D5D5D5;
 }
 
 nav img {
@@ -165,6 +174,7 @@ text {
     display: flex;
 }
 
+
 option {
     font-size: 30px;
     font-family: "Open Sans",open-sans,sans-serif;
@@ -181,7 +191,7 @@ select {
     border-style: none none solid none;
     word-break: break-word;
     white-space: nowrap;
-
+    font-size: 24px;
 }
 
 button {

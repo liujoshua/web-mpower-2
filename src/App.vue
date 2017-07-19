@@ -12,21 +12,12 @@
                         <h1> <a href="#"> mPower </a> </h1> 
                     </div>
     
-                    <div class="col-md-8 hidden-sm-down" align="right">
-                        <img src="./images/ic_check_circle_white_48px.svg" class="check hidden-sm-down"></img>
-                        <img src="./images/ic_assignment_black_36px.svg" class="hidden-sm-down board"></img>
-                        <img src="./images/ic_lock_black_48px.svg" class="hidden-sm-down"></img>
-                        <img src="./images/ic_lock_black_48px.svg" class="hidden-sm-down"></img>
-                        <img src="./images/ic_lock_black_48px.svg" class="hidden-sm-down"></img>
-                    </div>
-                </div>
-                <div class="row hidden-md-up">
-                    <div class="col-12 bar" align="center">
-                        <img src="./images/ic_check_circle_white_48px.svg" class="check"></img>
-                        <img src="./images/ic_assignment_black_36px.svg" class="board"></img>
-                        <img src="./images/ic_lock_black_48px.svg"></img>
-                        <img src="./images/ic_lock_black_48px.svg"></img>
-                        <img src="./images/ic_lock_black_48px.svg"></img>
+                    <div class="col-md-8 col-12 text-md-right text-center">
+                        <img src="./images/check.png" class="img-fluid check"  alt="image of a check marked circle"></img>
+                        <img src="./images/survey.svg" class="board"></img>
+                        <img src="./images/ic_lock_black_48px.svg" ></img>
+                        <img src="./images/ic_lock_black_48px.svg" ></img>
+                        <img src="./images/ic_lock_black_48px.svg" ></img>
                     </div>
                 </div>
             </div>
