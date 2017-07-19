@@ -9,7 +9,7 @@
     <br class="visible-md-up"> 
   
     <div class="row">
-    <select class="col-md-6 offset-md-2 custom-select customizedSelect" id="selectOne" v-model="selectedOptionOne">
+    <select v-focus="true" class="col-md-6 offset-md-2 custom-select customizedSelect" id="selectOne" v-model="selectedOptionOne">
       <option disabled value=""> Select answer </option>
       <!--TODO: Fill in with actual values-->
       <!--TODO: Find a way to wrap the text on mobile devices-->
@@ -48,6 +48,9 @@
 </template>
 
 <script>
+// TODO: Use directives to implement focus
+import { Focus } from '../directives/focus.js'
+
 export default {
   name: 'subjectInterest',
   data () {
@@ -90,6 +93,7 @@ export default {
       if (!canShow) {
         return
       }
+      document.getElementById(idName).focus()
       var interval = setInterval(function () {
         if (document.getElementById(idName)) {
           document.getElementById(idName).focus()
@@ -98,8 +102,11 @@ export default {
       }, 100)
     }
   },
-  created: function () {
+  mounted: function () {
     this.focusElement(true, 'selectOne')
+  },
+  directives: {
+    Focus
   }
 }
 </script>

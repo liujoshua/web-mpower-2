@@ -5,7 +5,7 @@
         <nav class="navbar fixed-top navbar-light bg-faded customNav">
             <div class="navbar-header">
                 <div class="row">
-                    <div class="col-12 text-left text-center text-md-left col-md-4">
+                    <div class="col-12 text-center text-md-left col-md-4">
                         <!-- making the name a hyperlink is for dev purposes.
                         so that getting to main page is easy, will replace or change
                         at a later time -->
@@ -35,11 +35,5 @@
     </div>
 </template>
 
-
-
-<style src="./css/bootstrap.min.css">
- 
-</style>
-<style src="./style_guide.css">
- 
-</style>
+<style src="./css/bootstrap.min.css"></style>
+<style src="./style_guide.css"></style>

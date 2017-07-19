@@ -81,7 +81,6 @@ export default {
       }
     },
     isPlaceAnswered: function () {
-      console.log('looking ')
       return (this.zipCode !== '' && this.zipCode.length >= 5)
     },
     hasChosenOption: function () {
@@ -99,8 +98,10 @@ export default {
       this.focusElement(this.isPlaceAnswered, 'comfortable')
     },
     isEligible: function () {
-      document.getElementById('next').style.opacity = 1
-      this.focusElement(true, 'next')
+      if (this.isEligible) {
+        document.getElementById('next').style.opacity = 1 // use vue like way for this
+        this.focusElement(this.isEligible, 'next')
+      }
     }
   },
   methods: {
