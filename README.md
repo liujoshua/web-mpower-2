@@ -1,6 +1,6 @@
 # web-mpower-2
 
-> mPower 2.0
+> mPower 2.0 website. Builds are deployed to: `http://web-mpower-2.s3-website-us-east-1.amazonaws.com/$BRANCH_NAME/`
 
 ## Build Setup
 
