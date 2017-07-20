@@ -18,93 +18,77 @@
         <option> have another movement disorder </option>
         <option> would like to be a control subject </option>
         <option> am a researcher reviewing the study </option>
-        <optgroup label=""> </optgroup>
+        <optgroup label=""></optgroup>
       </select>
     </div>
-  
+
+
     <br class="visible-md-up">
     <br class="visible-md-up">
-  
+
+
     <div class="row" v-if="isInterested">
-      <p class="pageOne col-md-8 offset-md-2 pl-2 pl-md-0"> and I would be willing to try </p>
+      <div class="pageOne col-md-8 offset-md-2"> and I would be willing to try </div>
       <br class="visible-md-up">
       <br class="visible-md-up">
       <br class="visible-md-up">
-  
-      <select v-focus="false" class="custom-select col-md-6 offset-md-2 pl-2 pl-md-0 customizedSelect" id="selectTwo" v-model="selectedOptionTwo">
+
+      <select v-focus="isInterested" class="custom-select col-md-6 offset-md-2 customizedSelect" id="selectTwo"
+              v-model="selectedOptionTwo">
         <option disabled value="">Please select one</option>
         <!--TODO: Fill in with actual values-->
         <option> this study </option>
         <option> parts of this study </option>
       </select>
     </div>
-  
+
     <br>
     <br>
-    <button v-focus="false" id="next" v-on:click="clicked"> Next </button>
-  
+    <button v-focus="isEligible" :disabled="!isEligible" id="next" v-on:click="clicked"> Next </button>
+
   </div>
 </template>
 
 <script>
-// TODO: Use directives to implement focus
-import { Focus } from '../directives/focus.js'
-
-export default {
-  name: 'subjectInterest',
-  data () {
-    return {
-      selectedOptionOne: '',
-      selectedOptionTwo: ''
-    }
-  },
-  computed: {
-    isEligible: function () {
-      return (this.isInterested && this.isWilling)
-    },
-    // TODO- Change functionality
-    // needs modified functionality, will update once more information about
-    // other possible choices
-    isInterested: function () {
-      return (this.selectedOptionOne !== '')
-    },
-    isWilling: function () {
-      return (this.selectedOptionTwo !== '')
-    }
-  },
-  watch: {
-    isInterested: function () {
-      // wait for element to render then focus in on it
-      // this.focusElement(this.isInterested, 'selectTwo') -- TODO; USE CUSTOM DIR INTSTEAD
-    },
-    isEligible: function () {
-      // this.focusElement(this.isEligible, 'next') -- TODO; USE CUSTOM DIR INTSTEAD
-    }
-  },
-  methods: {
-    clicked () {
-      if (this.isEligible) {
-        this.$router.push('Eligibility')
+  import { Focus } from '@/directives/focus.js'
+  export default {
+    name: 'subjectInterest',
+    data () {
+      return {
+        selectedOptionOne: '',
+        selectedOptionTwo: ''
       }
     },
-    // wait for element to render and then show it if that should take place
-    focusElement (canShow, idName) {
-      if (!canShow) {
-        return
+    computed: {
+      isEligible: function () {
+        return (this.isInterested && this.isWilling)
+      },
+      // TODO- Change functionality
+      // needs modified functionality, will update once more information about
+      // other possible choices
+      isInterested: function () {
+        return (this.selectedOptionOne !== '')
+      },
+      isWilling: function () {
+        return (this.selectedOptionTwo !== '')
       }
-      var interval = setInterval(function () {
-        if (document.getElementById(idName)) {
-          document.getElementById(idName).focus()
-          clearInterval(interval)
+    },
+    methods: {
+      clicked () {
+        if (this.isEligible) {
+          this.$router.push('Eligibility')
         }
-      }, 100)
+      }
+    },
+    directives: {
+      Focus
     }
-  },
-  mounted: function () {
-    // this.focusElement(true, 'selectOne')-- depreciated, using custom directive now
-  },
-  directives: {
-    Focus
   }
-}
 </script>
+
+
+<style>
+  button:disabled {
+    opacity: 0.5;
+  }
+</style>
