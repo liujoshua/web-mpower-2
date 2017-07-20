@@ -52,7 +52,7 @@
 </template>
 
 <script>
-  // TODO: Use directives to implement focus
+  import { Focus } from '@/directives/focus.js'
 
   export default {
     name: 'subjectInterest',
@@ -82,6 +82,9 @@
           this.$router.push('Eligibility')
         }
       }
+    },
+    directives: {
+      Focus
     }
   }
 </script>
