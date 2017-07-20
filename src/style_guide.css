@@ -171,6 +171,7 @@ text {
     font-size: 30px;
 }
 
+
 .container {
     display: flex;
 }
@@ -181,10 +182,14 @@ option {
     font-family: "Open Sans",open-sans,sans-serif;
 }
 
-select {
+.mdc-button{
+    --mdc-theme-primary: #31117D !important;
+}
+
+/*select {
     border-style: none none solid none;
     font-size: 20px;
-}
+}*/
 
 button {
     border-radius: 5px;

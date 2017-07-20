@@ -127,7 +127,6 @@ export default {
     this.focusElement(true, 'ageField')
   }
 }
-
 </script>
 
 <style scoped>

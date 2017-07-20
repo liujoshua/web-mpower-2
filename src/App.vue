@@ -22,7 +22,7 @@
                 </div>
             </div>
         </nav>
-    
+
         <router-view class="router"></router-view>
         <!--- TODO: must update to make sure application is only single page -->
     
