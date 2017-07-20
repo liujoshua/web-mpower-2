@@ -10,10 +10,11 @@
     <div class="row">
       <!-- Field input one -->
       <div class="input-group col-md-4 offset-md-2">
-        <label class="form-input-label inputLabel"> I am </label>
+        <label class="form-input-label inputLabel mr-3"> I am </label>
         <input v-model.number="age" type="number" pattern="\d*" class="form-control inputLabel" id="ageField" placeholder="enter age" min=0 max=100>
       </div>
   
+      <!-- TODO: Import lodash so that this message does not immediately prompt-->
       <div v-if="isUnderage" class="alert alert-danger col-md-4 offset-md-4 inputLabel" role="alert">
         <strong>Sorry.</strong> Participants must be at least 18 years of age to register.
       </div>
@@ -32,13 +33,13 @@
 
       <!--Field input three-->
     <div class="row input-group" v-if="isPlaceAnswered">
-      <label class="col-6 form-input-label inputLabel col-md-2 offset-md-2"> and I feel </label>
+      <label class="col-6 form-input-label inputLabel col-md-2 mr-0 offset-md-2" style="max-width: 130px;"> and I feel </label>
       <!--TODO: Fix allignment for medium screens where specific breakpoint makes un asthetic gap between label
       and the select field-->    
-      <select class="col-6 custom-select text-md-right col-md-2" id="comfortable" placeholder="please select one" v-model="selectedOptionForPhone">
+      <select class="col-6 custom-select ml-0 col-md-2" id="comfortable" placeholder="please select one" v-model="selectedOptionForPhone">
         <!--TODO: Fill in with actual values-->
         <!--TODO: Find a way to wrap the text on mobile devices-->
-        <option disabled value="">Please select</option>
+        <option disabled value=""> Select one</option>
         <option> comfortable </option>
         <option> weary </option>
         <option> uncomfortable </option>
