@@ -6,7 +6,6 @@
       <p class="pageOne col-md-8 md-offset-2 pl-2 pl-md-0"> I'm interested in joining the mPower study because I </p>
     </div>
   
-    <!--<br class="visible-md-up"> -->
     <br class="visible-md-up">
   
     <div class="row">
@@ -28,7 +27,7 @@
 
 
     <div class="row" v-if="isInterested">
-      <div class="pageOne col-md-8 offset-md-2"> and I would be willing to try </div>
+      <p class="pageOne col-md-8 offset-md-2 pl-2 pl-md-0"> and I would be willing to try </p>
       <br class="visible-md-up">
       <br class="visible-md-up">
       <br class="visible-md-up">
@@ -63,9 +62,6 @@
       isEligible: function () {
         return (this.isInterested && this.isWilling)
       },
-      // TODO- Change functionality
-      // needs modified functionality, will update once more information about
-      // other possible choices
       isInterested: function () {
         return (this.selectedOptionOne !== '')
       },
