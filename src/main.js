@@ -4,8 +4,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/index'
+import { Focus } from './directives/focus.js'
 
 Vue.config.productionTip = false
+
+Vue.directive('focus', Focus)
 
 /* eslint-disable no-new */
 new Vue({
@@ -14,3 +17,4 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
