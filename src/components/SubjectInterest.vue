@@ -1,70 +1,119 @@
 <template>
 
-  <div class="page-overview">
+    <div class="page-overview">
+      <div class="row">
+      <br>
+      <br>
+      <div class="pageOne col-md-8 md-offset-2" > I'm interested in joining the mPower study because I </div>
+      </div>
 
-
-    <p> I'm interested in joining the mPower study because I </p>
-    <br>
-    <br>
-
-
-    <select v-model="selected">
-      <option disabled value="">Please select one</option>
-      <option> {{ hasParkinsons }}</option>
+    <br class="visible-md-up"> 
+    <br class="visible-md-up"> 
+  
+    <div class="row">
+    <select v-focus="true" class="col-md-6 offset-md-2 custom-select customizedSelect" id="selectOne" v-model="selectedOptionOne">
+      <option disabled value=""> Select answer </option>
+      <!--TODO: Fill in with actual values-->
+      <!--TODO: Find a way to wrap the text on mobile devices-->
+      <option> have parkinsons </option>
+      <option> have another movement disorder </option>
+      <option> would like to be a control subject </option>
+      <option> am a researcher reviewing the study </option>
+      <optgroup label=""> </optgroup>
     </select>
-
-
-    <br><br>
-
-
-    <div v-if="seen">
-      <p> and I would be willing to try </p>
-
-      <br><br>
-      <select v-model="selected_option_two">
-        <option disabled value="">Please select one</option>
-        <option>{{willing}}</option>
-      </select>
-
     </div>
+  
 
-    <br><br>
-    <button id="next" v-on:click="clicked"> Next </button>
+    <br class="visible-md-up"> 
+    <br class="visible-md-up"> 
+  
+  
+    <div class="row" v-if="isInterested" >
+      <div class="pageOne col-md-8 offset-md-2"> and I would be willing to try </div>
+      <br class="visible-md-up"> 
+      <br class="visible-md-up"> 
+      <br class="visible-md-up"> 
 
+      <select v-focus="false" class="custom-select col-md-6 offset-md-2 customizedSelect" id="selectTwo" v-model="selectedOptionTwo">
+        <option disabled value="">Please select one</option>
+        <!--TODO: Fill in with actual values-->
+        <option> this study </option>
+        <option> parts of this study </option>
+      </select>
+    </div>
+  
+    <br>
+    <br>
+    <button v-focus="false" id="next" v-on:click="clicked"> Next </button>
+  
   </div>
-
 </template>
 
 <script>
-  export default {
-    name: 'subjectInterest',
-    data () {
-      return {
-        hasParkinsons: 'have parkinsons',
-        willing: 'this study to help further the research on Parkinsons',
-        selected: '',
-        selected_option_two: '',
-        seen: false
+// TODO: Use directives to implement focus
+import { Focus } from '../directives/focus.js'
+import Vue from 'vue'
+var myDirective = Vue.directive('focus')
+console.log(myDirective)
+
+export default {
+  name: 'subjectInterest',
+  data () {
+    return {
+      selectedOptionOne: '',
+      selectedOptionTwo: ''
+    }
+  },
+  computed: {
+    isEligible: function () {
+      return (this.isInterested && this.isWilling)
+    },
+    // TODO- Change functionality
+    // needs modified functionality, will update once more information about
+    // other possible choices
+    isInterested: function () {
+      return (this.selectedOptionOne !== '')
+    },
+    isWilling: function () {
+      return (this.selectedOptionTwo !== '')
+    }
+  },
+  watch: {
+    isInterested: function () {
+      // wait for element to render then focus in on it
+      // this.focusElement(this.isInterested, 'selectTwo') -- TODO; USE CUSTOM DIR INTSTEAD
+    },
+    isEligible: function () {
+      // this.focusElement(this.isEligible, 'next') -- TODO; USE CUSTOM DIR INTSTEAD
+    }
+  },
+  methods: {
+    clicked () {
+      if (this.isEligible) {
+        this.$router.push('Eligibility')
       }
     },
-    methods: {
-      clicked: function () {
-        if (this.selected === this.hasParkinsons && !this.seen) {
-          this.seen = true
-        }
-        if (this.selected_option_two === this.willing && this.seen) {
-          window.location.href += `Eligibility`
-        }
+    // wait for element to render and then show it if that should take place
+    focusElement (canShow, idName) {
+      if (!canShow) {
+        return
       }
+      var interval = setInterval(function () {
+        if (document.getElementById(idName)) {
+          document.getElementById(idName).focus()
+          clearInterval(interval)
+        }
+      }, 100)
     }
+  },
+  mounted: function () {
+    // this.focusElement(true, 'selectOne')-- depreciated, using custom directive now
+  },
+  directives: {
+    Focus
   }
+}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
-  .hello {
-    h1 {
-      font-weight: 200;
-    }
-  }
+<style >
 </style>
