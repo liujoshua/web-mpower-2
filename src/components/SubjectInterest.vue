@@ -1,40 +1,37 @@
 <template>
-
-    <div class="page-overview">
-      <div class="row">
-      <br>
-      <br>
-      <div class="pageOne col-md-8 md-offset-2" > I'm interested in joining the mPower study because I </div>
-      </div>
-
-    <br class="visible-md-up"> 
-    <br class="visible-md-up"> 
-  
+  <div class="page-overview">
     <div class="row">
-    <select v-focus="true" class="col-md-6 offset-md-2 custom-select customizedSelect" id="selectOne" v-model="selectedOptionOne">
-      <option disabled value=""> Select answer </option>
-      <!--TODO: Fill in with actual values-->
-      <!--TODO: Find a way to wrap the text on mobile devices-->
-      <option> have parkinsons </option>
-      <option> have another movement disorder </option>
-      <option> would like to be a control subject </option>
-      <option> am a researcher reviewing the study </option>
-      <optgroup label=""> </optgroup>
-    </select>
+      <br>
+      <br>
+      <p class="pageOne col-md-8 md-offset-2 pl-2 pl-md-0"> I'm interested in joining the mPower study because I </p>
     </div>
   
-
-    <br class="visible-md-up"> 
-    <br class="visible-md-up"> 
+    <!--<br class="visible-md-up"> -->
+    <br class="visible-md-up">
   
+    <div class="row">
+      <select v-focus="true" class="col-md-6 offset-md-2 custom-select pl-2 pl-md-0 customizedSelect" id="selectOne" v-model="selectedOptionOne">
+        <option disabled value=""> Select answer </option>
+        <!--TODO: Fill in with actual values-->
+        <!--TODO: Find a way to wrap the text on mobile devices-->
+        <option> have parkinsons </option>
+        <option> have another movement disorder </option>
+        <option> would like to be a control subject </option>
+        <option> am a researcher reviewing the study </option>
+        <optgroup label=""> </optgroup>
+      </select>
+    </div>
   
-    <div class="row" v-if="isInterested" >
-      <div class="pageOne col-md-8 offset-md-2"> and I would be willing to try </div>
-      <br class="visible-md-up"> 
-      <br class="visible-md-up"> 
-      <br class="visible-md-up"> 
-
-      <select v-focus="false" class="custom-select col-md-6 offset-md-2 customizedSelect" id="selectTwo" v-model="selectedOptionTwo">
+    <br class="visible-md-up">
+    <br class="visible-md-up">
+  
+    <div class="row" v-if="isInterested">
+      <p class="pageOne col-md-8 offset-md-2 pl-2 pl-md-0"> and I would be willing to try </p>
+      <br class="visible-md-up">
+      <br class="visible-md-up">
+      <br class="visible-md-up">
+  
+      <select v-focus="false" class="custom-select col-md-6 offset-md-2 pl-2 pl-md-0 customizedSelect" id="selectTwo" v-model="selectedOptionTwo">
         <option disabled value="">Please select one</option>
         <!--TODO: Fill in with actual values-->
         <option> this study </option>
@@ -52,9 +49,6 @@
 <script>
 // TODO: Use directives to implement focus
 import { Focus } from '../directives/focus.js'
-import Vue from 'vue'
-var myDirective = Vue.directive('focus')
-console.log(myDirective)
 
 export default {
   name: 'subjectInterest',
@@ -114,6 +108,3 @@ export default {
   }
 }
 </script>
-
-<style >
-</style>

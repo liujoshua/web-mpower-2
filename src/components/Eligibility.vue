@@ -22,7 +22,7 @@
       <!--Field input two-->
       <div v-if="isUnderage !== null && !isUnderage" class="input-group col-md-4">
         <label class="form-input-label mr-2 inputLabel"> I live in </label>
-        <input v-model="zipCode"  id="placeField" class="form-control inputLabel" type="number" pattern="\d*" placeholder="enter 5-digit zipcode"></input>
+        <input v-model="zipCode"  id="placeField" class="form-control inputLabel" type="number" pattern="\d*" placeholder="enter 5-digit zip"></input>
       </div>
     </div>
 

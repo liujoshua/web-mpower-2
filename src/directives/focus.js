@@ -13,7 +13,6 @@ export const Focus = {
   inserted: function (el, binding, vnode) {
     // Focus the element
     if (binding.value) {
-      console.log(binding) // for debugging
       el.focus()
     }
   }
