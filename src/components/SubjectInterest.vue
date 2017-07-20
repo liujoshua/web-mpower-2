@@ -2,6 +2,8 @@
 
     <div class="page-overview">
       <div class="row">
+      <br>
+      <br>
       <div class="pageOne col-md-8 md-offset-2" > I'm interested in joining the mPower study because I </div>
       </div>
 
@@ -32,7 +34,7 @@
       <br class="visible-md-up"> 
       <br class="visible-md-up"> 
 
-      <select class="custom-select col-md-6 offset-md-2 customizedSelect" id="selectTwo" v-model="selectedOptionTwo">
+      <select v-focus="false" class="custom-select col-md-6 offset-md-2 customizedSelect" id="selectTwo" v-model="selectedOptionTwo">
         <option disabled value="">Please select one</option>
         <!--TODO: Fill in with actual values-->
         <option> this study </option>
@@ -42,7 +44,7 @@
   
     <br>
     <br>
-    <button id="next" v-on:click="clicked"> Next </button>
+    <button v-focus="false" id="next" v-on:click="clicked"> Next </button>
   
   </div>
 </template>
@@ -50,6 +52,9 @@
 <script>
 // TODO: Use directives to implement focus
 import { Focus } from '../directives/focus.js'
+import Vue from 'vue'
+var myDirective = Vue.directive('focus')
+console.log(myDirective)
 
 export default {
   name: 'subjectInterest',
@@ -76,10 +81,10 @@ export default {
   watch: {
     isInterested: function () {
       // wait for element to render then focus in on it
-      this.focusElement(this.isInterested, 'selectTwo')
+      // this.focusElement(this.isInterested, 'selectTwo') -- TODO; USE CUSTOM DIR INTSTEAD
     },
     isEligible: function () {
-      this.focusElement(this.isEligible, 'next')
+      // this.focusElement(this.isEligible, 'next') -- TODO; USE CUSTOM DIR INTSTEAD
     }
   },
   methods: {
@@ -102,7 +107,7 @@ export default {
     }
   },
   mounted: function () {
-    this.focusElement(true, 'selectOne')
+    // this.focusElement(true, 'selectOne')-- depreciated, using custom directive now
   },
   directives: {
     Focus
