@@ -60,12 +60,14 @@
     <br>
     <div class="col-md-12">
       <!--TODO: Make focusing in on the element function properly-->
+      <!--Race condition between v-focus and disable getting removed from isEligible being set to true-->
       <md-button style="background-color: #31117D; color: white;" id="next" 
       class="mdc-button
             mdc-button--raised
             mdc-button--primary
-            mdc-ripple-surface mdc-theme--primary-bg" 
-      data-mdc-auto-init="MDCRipple" v-focus="isEligible" :disabled="!isEligible"  v-on:click="clicked"> Next </md-button>
+            mdc-ripple-surface mdc-theme--primary-bg" v-bind:class="{dim: !isEligible}"
+      data-mdc-auto-init="MDCRipple" v-focus="isEligible"
+      v-on:click="clicked"> Next </md-button>
     </div>
   </div>
   </div>
@@ -119,5 +121,9 @@ export default {
 <style scoped>
   button:disabled {
     opacity: 0.5;
+  }
+ /* Work around for diabled button interfering with when the button gets focused in on*/
+  .dim {
+    opacity: 0.5;    
   }
 </style>

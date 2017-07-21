@@ -6,8 +6,9 @@
       <p class="pageOne col-md-8 md-offset-2 pl-2 pl-md-0"> I'm interested in joining the mPower study because I </p>
     </div>
     <!--TODO: Make the select menu slide out more smoothly, currently its being styled with css as a hack to make it better-->
-    <div class="row field-group">
-      <md-input-container class="col-md-6 offset-md-2 pl-2 pl-md-0 ">
+    <!--TODO: make focus feature work with the div-->
+    <div class="row field-group" v-focus="true" >
+      <md-input-container class="col-md-6 offset-md-2 pl-2 pl-md-0 " v-focus="true" >
         <md-select v-focus="true" id="selectOne" v-model="selectedOptionOne" class="pageTwo NOT_IMPLEMENTED">
           <md-option disabled value=""> Select answer </md-option>
           <md-option> have parkinsons </md-option>
@@ -19,6 +20,7 @@
     </div>
 
   <!--TODO: ake the select menu slide out more smoothly, currently its being styled with css as a hack to make it better-->
+  <!--TODO: make focus feature work with the div-->
     <div class="row field-group" v-if="isInterested">
       <p class="pageOne col-md-8 md-offset-2 pl-2 pl-md-0"> and I would be willing to try </p>    
       <md-input-container class="col-md-6 offset-md-2 pl-2 pl-md-0 NOT_IMPLEMENTED ">
@@ -33,11 +35,11 @@
   
     <br>
     <br>
-    <md-button v-focus="isEligible" :disabled="!isEligible" style="background-color: #31117D; color: white;" id="next" class="mdc-button
+    <md-button v-focus="isEligible" style="background-color: #31117D; color: white;" id="next" class="mdc-button
                                         mdc-button--raised
                                         mdc-button--primary
                                         mdc-ripple-surface mdc-theme--primary-bg" data-mdc-auto-init="MDCRipple"
-                                        v-on:click="clicked"> Next </md-button>
+                                        v-on:click="clicked" v-bind:class="{dim: !isEligible}" > Next </md-button>
   </div>
 </template>
 
@@ -81,5 +83,9 @@ export default {
 <style>
   button:disabled {
     opacity: 0.5;
+  }
+   /* Work around for diabled button interfering with when the button gets focused in on*/
+  .dim {
+      opacity: 0.5;    
   }
 </style>
