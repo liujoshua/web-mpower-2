@@ -11,7 +11,7 @@
       <!-- Field input one -->
       <div class="input-group col-md-4 offset-md-2">
         <label class="form-input-label inputLabel mr-3"> I am </label>
-        <input v-model.number="age" type="number" pattern="\d*" class="form-control inputLabel" id="ageField" placeholder="enter age" min=0 max=100>
+        <input v-focus="age.length < 3" v-model.number="age" type="number" pattern="\d*" class="form-control inputLabel" id="ageField" placeholder="enter age" min=0 max=100>
       </div>
   
       <!-- TODO: Import lodash so that this message does not immediately prompt-->
@@ -22,7 +22,7 @@
       <!--Field input two-->
       <div v-if="isUnderage !== null && !isUnderage" class="input-group col-md-4">
         <label class="form-input-label mr-2 inputLabel"> I live in </label>
-        <input v-model="zipCode"  id="placeField" class="form-control inputLabel" type="number" pattern="\d*" placeholder="enter 5-digit zipcode"></input>
+        <input v-focus="isUnderage !== null && !isUnderage && zipCode.length < 5" v-model="zipCode"  id="placeField" class="form-control inputLabel" type="number" pattern="\d*" placeholder="enter 5-digit zip"></input>
       </div>
     </div>
 
@@ -34,9 +34,7 @@
       <!--Field input three-->
     <div class="row input-group" v-if="isPlaceAnswered">
       <label class="col-6 form-input-label inputLabel col-md-2 mr-0 offset-md-2" style="max-width: 130px;"> and I feel </label>
-      <!--TODO: Fix allignment for medium screens where specific breakpoint makes un asthetic gap between label
-      and the select field-->    
-      <select class="col-6 custom-select ml-0 col-md-2" id="comfortable" placeholder="please select one" v-model="selectedOptionForPhone">
+      <select v-focus="isPlaceAnswered" class="col-6 custom-select ml-0 col-md-2" id="comfortable" placeholder="please select one" v-model="selectedOptionForPhone">
         <!--TODO: Fill in with actual values-->
         <!--TODO: Find a way to wrap the text on mobile devices-->
         <option disabled value=""> Select one</option>
@@ -55,7 +53,7 @@
         <br>
         <br>
         <div class="col-md-12">
-          <button v-on:click="clicked" id="next"> Submit </button>
+          <button v-on:click="clicked" v-focus="isEligible" :disabled="!isEligible" id="next"> Submit </button>
         </div>
       </div>
     </div>
@@ -65,6 +63,7 @@
 <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
 
 <script>
+import { Focus } from '@/directives/focus.js'
 export default {
   data () {
     return {
@@ -91,47 +90,22 @@ export default {
       return (!this.isUnderage && this.isPlaceAnswered && this.hasChosenOption)
     }
   },
-  watch: {
-    isUnderage: function () {
-      this.focusElement(this.isUnderage, 'placeField')
-    },
-    isPlaceAnswered: function () {
-      this.focusElement(this.isPlaceAnswered, 'comfortable')
-    },
-    isEligible: function () {
-      if (this.isEligible) {
-        document.getElementById('next').style.opacity = 1 // use vue like way for this
-        this.focusElement(this.isEligible, 'next')
-      }
-    }
-  },
   methods: {
     clicked () {
       if (this.isEligible) {
         this.$router.push('Congratulations')
       }
-    },
-    focusElement (canShow, idName) {
-      if (!canShow) {
-        return
-      }
-      var interval = setInterval(function () {
-        if (document.getElementById(idName)) {
-          document.getElementById(idName).focus()
-          clearInterval(interval)
-        }
-      }, 100)
     }
   },
-  created: function () {
-    this.focusElement(true, 'ageField')
+  directives: {
+    Focus
   }
 }
 
 </script>
 
 <style scoped>
-button {
-  opacity: 0.5;
-}
+  button:disabled {
+    opacity: 0.5;
+  }
 </style>
