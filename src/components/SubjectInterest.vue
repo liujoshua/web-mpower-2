@@ -5,63 +5,31 @@
       <br>
       <p class="pageOne col-md-8 md-offset-2 pl-2 pl-md-0"> I'm interested in joining the mPower study because I </p>
     </div>
-<!--    
-    <div class="row">
-      <select v-focus="true" class="col-md-6 offset-md-2 custom-select pl-2 pl-md-0 customizedSelect" id="selectOne" v-model="selectedOptionOne">
-        <option disabled value=""> Select answer </option>-->
-        <!--TODO: Fill in with actual values-->
-        <!--TODO: Find a way to wrap the text on mobile devices-->
-        <!--<option> have parkinsons </option>
-        <option> have another movement disorder </option>
-        <option> would like to be a control subject </option>
-        <option> am a researcher reviewing the study </option>
-        <optgroup label=""> </optgroup>
-      </select>
-    </div>-->
 
-    <!--TODOL PUT IN CODE FOR MATERIAL-IO select element, broken right now with 
-    styling issues-->
-    <div class="row">
-    
-      <div class="col-md-6 offset-md-2 pl-2 pl-md-0 mdc-select" role="listbox" id="optionBoxOne">
-        <span v-focus="true" class="mdc-select__selected-text"> select an option </span>
-        <div class="mdc-simple-menu mdc-select__menu ">
-          <ul class="mdc-list mdc-simple-menu__items" id="selectOne">
-            <li class="mdc-list-item listItem" role="option" tabindex="-1" aria-disabled="true">
-              select an option
-            </li>
-            <li class="mdc-list-item listItem" role="option" value="hasParkinsons" tabindex="0">
-              have parkinsons
-            </li>
-            <li class="mdc-list-item listItem" role="option" tabindex="-1" aria-disabled="true">
-              have another movement disorder
-            </li>
-            <li class="mdc-list-item listItem" role="option" value="hasParkinsons" tabindex="0">
-              would like to be a control subject
-            </li><li class="mdc-list-item listItem" role="option" tabindex="-1" aria-disabled="true">
-              am a researcher reviewing the study
-            </li>
-          </ul>
-        </div>
-      </div>    
+    <div class="row field-group">
+      <md-input-container class="col-md-6 offset-md-2 pl-2 pl-md-0 ">
+        <md-select id="selectOne" v-model="selectedOptionOne">
+          <md-option disabled value=""> Select answer </md-option>
+          <md-option> have parkinsons </md-option>
+          <md-option> have another movement disorder </md-option>
+          <md-option> would like to be a control subject </md-option>
+          <md-option> am a researcher reviewing the study </md-option>
+        </md-select>
+      </md-input-container>
     </div>
-  
-    <br class="visible-md-up">
-    <br class="visible-md-up">
-  
-    <div class="row" v-if="isInterested">
-      <p class="pageOne col-md-8 offset-md-2 pl-2 pl-md-0"> and I would be willing to try </p>
-      <br class="visible-md-up">
-      <br class="visible-md-up">
-      <br class="visible-md-up">
-  
-      <select v-focus="false" class="custom-select col-md-6 offset-md-2 pl-2 pl-md-0 customizedSelect" id="selectTwo" v-model="selectedOptionTwo">
-        <option disabled value="">Please select one</option>
-        <!--TODO: Fill in with actual values-->
-        <option> this study </option>
-        <option> parts of this study </option>
-      </select>
+
+
+    <div class="row field-group" v-if="isInterested">
+      <p class="pageOne col-md-8 md-offset-2 pl-2 pl-md-0"> and I would be willing to try </p>    
+      <md-input-container class="col-md-6 offset-md-2 pl-2 pl-md-0 ">
+        <md-select id="selectTwo" v-model="selectedOptionTwo">
+          <md-option disabled value=""> Select answer </md-option>
+          <md-option> this study </md-option>
+          <md-option> parts of this study </md-option>
+        </md-select>
+      </md-input-container>
     </div>
+
   
     <br>
     <br>
@@ -74,10 +42,10 @@
   </div>
 </template>
 
+
 <script>
 // TODO: Use directives to implement focus
 import { Focus } from '../directives/focus.js'
-import {MDCSelect} from '@material/select'
 
 // TODO- This should be a global import, so it should not need to get imported
 export default {
@@ -129,15 +97,6 @@ export default {
         }
       }, 100)
     }
-  },
-  mounted: function () {
-    const select = new MDCSelect(document.querySelector('#optionBoxOne'))
-    console.log(select)
-    select.listen('MDCSelect:change', () => {
-      console.log(`Selected '${select.selectedOptions[0].textContent}' at index ${select.selectedIndex} ` +
-      `with value '${select.value}'`)
-    }
-    )
   },
   directives: {
     Focus

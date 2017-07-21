@@ -9,11 +9,19 @@
   
     <div class="row">
       <!-- Field input one -->
-      <div class="input-group col-md-4 offset-md-2">
+      <!--<div class="input-group col-md-4 offset-md-2">
         <label class="form-input-label inputLabel mr-3"> I am </label>
         <input v-model.number="age" type="number" pattern="\d*" class="form-control inputLabel" id="ageField" placeholder="enter age" min=0 max=100>
-      </div>
-  
+      </div>-->
+       <!--<div class="input-group col-md-4 offset-md-2" id="ageField">-->
+
+      <md-input-container class="col-md-4 offset-md-2">
+        <label > I am </label>
+        <md-input v-model.number="age" type="number" pattern="\d*" id="ageField" min=0 max=100></md-input>
+      </md-input-container>
+
+
+      <!--</div>-->  
       <!-- TODO: Import lodash so that this message does not immediately prompt-->
       <div v-if="isUnderage" class="alert alert-danger col-md-4 offset-md-4 inputLabel" role="alert">
         <strong>Sorry.</strong> Participants must be at least 18 years of age to register.
@@ -51,14 +59,21 @@
    <br>
    <br>
 
-    <div class="row">
-        <br>
-        <br>
-        <div class="col-md-12">
-          <button v-on:click="clicked" id="next"> Submit </button>
-        </div>
-      </div>
+    
+  <div class="row">
+    <br>
+    <br>
+    <div class="col-md-12">
+      <md-button v-focus="false" style="background-color: #31117D; color: white;" id="next" 
+      class="mdc-button
+            mdc-button--raised
+            mdc-button--primary
+            mdc-ripple-surface mdc-theme--primary-bg" 
+      data-mdc-auto-init="MDCRipple" v-on:click="clicked"> Next </md-button>
     </div>
+  </div>
+  </div>
+
 </template>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

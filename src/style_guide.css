@@ -7,10 +7,10 @@ body * {
     font-size: 24px !important;
 }
 
-input {
-    border-style: none none solid none !important;
-    text-align: center;
+div.md-menu-content.md-select-content.md-theme-default.md-size-0.md-direction-bottom-right.md-active {
+    top: 175px !important;
 }
+
 
 *:focus {
     /*box-shadow: 0px 1px 0px #5cb3fd;*/
