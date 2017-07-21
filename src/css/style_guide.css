@@ -21,7 +21,6 @@ input {
 }
 
 #comfortable {
-    margin-left: 0px;
     border-style: none none solid none !important;
 }
 
@@ -31,8 +30,9 @@ input {
 }
 
 .pageTwo {
-    font-size: 27px;
+    font-size: 24px;
 }
+
 .pageTwo.tiny {
     color: #3B4A63;
     font-size: 23px !important;
@@ -84,8 +84,6 @@ input {
     }
 
     .pageOne {
-        font-size: 30px !important;
-        font-size: 22px;
         margin: auto;
     }
 
@@ -132,11 +130,6 @@ nav#app {
     position: absolute;
 }
 
-h2 {
-  font-size: 14px;
-  color: lightgray;
-}
-
 div.overview {
     font-family: "Open Sans",open-sans,sans-serif;
 }
@@ -144,7 +137,7 @@ div.overview {
 p {
     display: inline;
     font-family: "Open Sans",open-sans,sans-serif;
-    font-size: 22px;
+    font-size: 24px;
 }
 
 nav#navMenu {
@@ -184,17 +177,8 @@ option {
     font-family: "Open Sans",open-sans,sans-serif;
 }
 
-.page-overview.text-left {
-    font-family: inherit;
-    color: inherit;
-    font-size: 24px;
-}
-
-
 select {
     border-style: none none solid none;
-    word-break: break-word;
-    white-space: nowrap;
     font-size: 20px;
 }
 
