@@ -5,10 +5,10 @@
       <br>
       <p class="pageOne col-md-8 md-offset-2 pl-2 pl-md-0"> I'm interested in joining the mPower study because I </p>
     </div>
-
+    <!--TODO: Make the select menu slide out more smoothly, currently its being styled with css as a hack to make it better-->
     <div class="row field-group">
       <md-input-container class="col-md-6 offset-md-2 pl-2 pl-md-0 ">
-        <md-select v-focus="true" id="selectOne" v-model="selectedOptionOne" class="pageTwo">
+        <md-select v-focus="true" id="selectOne" v-model="selectedOptionOne" class="pageTwo NOT_IMPLEMENTED">
           <md-option disabled value=""> Select answer </md-option>
           <md-option> have parkinsons </md-option>
           <md-option> have another movement disorder </md-option>
@@ -18,10 +18,10 @@
       </md-input-container>
     </div>
 
-
+  <!--TODO: ake the select menu slide out more smoothly, currently its being styled with css as a hack to make it better-->
     <div class="row field-group" v-if="isInterested">
       <p class="pageOne col-md-8 md-offset-2 pl-2 pl-md-0"> and I would be willing to try </p>    
-      <md-input-container class="col-md-6 offset-md-2 pl-2 pl-md-0 ">
+      <md-input-container class="col-md-6 offset-md-2 pl-2 pl-md-0 NOT_IMPLEMENTED ">
         <md-select v-focus="isInterested" id="selectTwo" v-model="selectedOptionTwo">
           <md-option disabled value=""> Select answer </md-option>
           <md-option> this study </md-option>

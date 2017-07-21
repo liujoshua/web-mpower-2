@@ -9,11 +9,6 @@
   
     <div class="row">
       <!-- Field input one -->
-      <!--<div class="input-group col-md-4 offset-md-2">
-        <label class="form-input-label inputLabel mr-3"> I am </label>
-        <input v-model.number="age" type="number" pattern="\d*" class="form-control inputLabel" id="ageField" placeholder="enter age" min=0 max=100>
-      </div>-->
-       <!--<div class="input-group col-md-4 offset-md-2" id="ageField">-->
 
       <md-input-container class="col-md-4 offset-md-2">
         <label > I am </label>
@@ -28,7 +23,8 @@
       </div>
   
       <!--Field input two-->
-      <md-input-container v-if="isUnderage !== null && !isUnderage" class="col-md-4 ">
+      <!--TODO: Use google API to use smarter search for zipcode with autocomplete-->
+      <md-input-container v-if="isUnderage !== null && !isUnderage" class="col-md-4 NOT_IMPLEMENTED">
         <label> zipcode </label>
         <md-input v-focus="isUnderage !== null && !isUnderage && zipCode.length < 5" v-model="zipCode"  id="placeField"  class="opt" type="number" pattern="\d*" placeholder="enter 5-digit zip"></md-input>
       </md-input-container>
@@ -40,12 +36,13 @@
     </div>-->
 
       <!--Field input three-->
+      <!--TODO: Fix the focusing onto this element from having entered the zipcode-->
       <div class="row field-group" v-if="isPlaceAnswered">
-        <md-input-container class="col-md-2 offset-md-2">
+        <md-input-container class="col-md-2 offset-md-2 NOT_IMPLEMENTED">
           <label > and I feel </label>
           <md-select  v-focus="isPlaceAnswered" id="selectTwo" v-model="selectedOptionForPhone" class="opt">
-            <!--<md-option disabled value=""> Select answer2 </md-option>-->
-            <md-option> Select one </md-option>
+            <md-option disabled value=""> Select answer </md-option>
+            <md-option> comfortable </md-option>
             <md-option> weary </md-option>
             <md-option> uncomfortable </md-option>
           </md-select>
@@ -62,6 +59,7 @@
     <br>
     <br>
     <div class="col-md-12">
+      <!--TODO: Make focusing in on the element function properly-->
       <md-button style="background-color: #31117D; color: white;" id="next" 
       class="mdc-button
             mdc-button--raised

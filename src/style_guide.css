@@ -7,11 +7,10 @@ body * {
     font-size: 24px !important;
 }
 
+/*TODO: MAKE THIS STYLING UNECESSARY WITH VUE-MATERIAL CLASS STYLING IN MAIN HTML*/
 div.md-menu-content.md-select-content.md-theme-default.md-size-0.md-direction-bottom-right.md-active {
     top: 175px !important;
 }
-
-
 
 *:focus {
     /*box-shadow: 0px 1px 0px #5cb3fd;*/
@@ -46,6 +45,43 @@ div.md-menu-content.md-select-content.md-theme-default.md-size-0.md-direction-bo
     line-height: 35px;
     text-align: center;
 }
+
+.NOT_IMPLEMENTED {
+    background-color: yellow;
+}
+
+ /*.spec:after {
+    position: absolute;
+    content: '';
+    background: red;
+    display: block;
+    width: 40%;
+    height: 10px;
+    -webkit-transform: rotate(15deg) !important;
+    transform: rotate(15deg) !important;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.spec:before {
+    position: absolute;
+    content: '';
+    background: red;
+    display: block;
+    width: 40%;
+    height: 10px;
+    -webkit-transform: rotate(-15deg);
+    transform: rotate(-15deg);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}*/
+
 
 
 
