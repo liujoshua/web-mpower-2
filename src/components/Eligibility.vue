@@ -73,9 +73,6 @@ export default {
     }
   },
   computed: {
-    ageAnswered: function () {
-      return this.age !== ''
-    },
     isUnderage: function () {
       if (this.age === '') {
         return null
