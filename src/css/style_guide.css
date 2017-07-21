@@ -1,6 +1,6 @@
 body * {
     color: #5B34B6;
-    
+
 }
 
 .inputLabel {
@@ -33,10 +33,10 @@ input {
 .pageTwo {
     font-size: 27px;
 }
-.pageTwo.tiny {    
-    color: #3B4A63;	
+.pageTwo.tiny {
+    color: #3B4A63;
     font-size: 23px !important;
-    font-weight: 600;	
+    font-weight: 600;
     line-height: 35px;
     text-align: center;
 }
@@ -44,7 +44,7 @@ input {
 
 
 /* For extra small and medium sized devices */
-@media (max-width: 767px) { 
+@media (max-width: 767px) {
 
     .customNav {
         max-height: 25%;
@@ -70,13 +70,13 @@ input {
         width: 40%;
         bottom: 5px;
         position: fixed;
-        z-index:1000; 
+        z-index:1000;
     }
 }
 
 /* For medium devices and larger */
-@media (min-width: 767px) { 
-    
+@media (min-width: 767px) {
+
     #ageField {
         font-size: 24px;
         padding-right: 0px;
@@ -84,7 +84,7 @@ input {
     }
 
     .pageOne {
-        font-size: 30px !important;    
+        font-size: 30px !important;
         font-size: 22px;
         margin: auto;
     }
@@ -92,9 +92,9 @@ input {
      button#next {
         margin-left: 40%;
         width: 20%;
-        bottom: 5%; 
+        bottom: 5%;
         position: fixed;
-        z-index:1000; 
+        z-index:1000;
         font-size: 30px;
     }
 }
@@ -110,10 +110,6 @@ input {
     box-shadow: 0 2px 3px 0 rgba(141,141,141,0.5);
 }
 
-.footer {
-    display: none;
-}
-
 .bar {
     padding: 0px;
 }
@@ -125,7 +121,7 @@ input {
 
 nav img {
     border-radius: 50%;
-    background-color: rgba(65,73,90,0.1); 
+    background-color: rgba(65,73,90,0.1);
     margin-left: 2px;
     margin-right: 2px;
     width: 55px;
@@ -141,7 +137,7 @@ h2 {
   color: lightgray;
 }
 
-div.overview { 
+div.overview {
     font-family: "Open Sans",open-sans,sans-serif;
 }
 
@@ -204,7 +200,7 @@ select {
 
 button {
     border-radius: 5px;
-    background-color: #31117D; 
+    background-color: #31117D;
     border: thin;
     color: white;
     padding: 15px 32px;
