@@ -17,7 +17,7 @@
 
       <md-input-container class="col-md-4 offset-md-2">
         <label > I am </label>
-        <md-input v-focus="age.length < 3" v-model.number="age" type="number" pattern="\d*" class="form-control inputLabel" id="ageField" placeholder="enter age" min=0 max=100></md-input>
+        <md-input v-focus="age.length < 3" v-model.number="age" type="number" pattern="\d*" class="opt" id="ageField" placeholder="I am" min=0 max=100></md-input>
       </md-input-container>
 
 
@@ -28,10 +28,10 @@
       </div>
   
       <!--Field input two-->
-      <div v-if="isUnderage !== null && !isUnderage" class="input-group col-md-4">
-        <label class="form-input-label mr-2 inputLabel"> I live in </label>
-        <input v-focus="isUnderage !== null && !isUnderage && zipCode.length < 5" v-model="zipCode"  id="placeField" class="form-control" type="number" pattern="\d*" placeholder="enter 5-digit zip"></input>
-      </div>
+      <md-input-container v-if="isUnderage !== null && !isUnderage" class="col-md-4 ">
+        <label> zipcode </label>
+        <md-input v-focus="isUnderage !== null && !isUnderage && zipCode.length < 5" v-model="zipCode"  id="placeField"  class="opt" type="number" pattern="\d*" placeholder="enter 5-digit zip"></md-input>
+      </md-input-container>
     </div>
 
     <!--TODO: incorporate error message without immediately prompting the user -->
@@ -40,44 +40,34 @@
     </div>-->
 
       <!--Field input three-->
-    <div class="row input-group" v-if="isPlaceAnswered">
-      <label class="col-6 form-input-label inputLabel col-md-2 mr-0 offset-md-2" style="max-width: 130px;"> and I feel </label>
-      <select v-focus="isPlaceAnswered" class="col-6 custom-select ml-0 col-md-2" id="comfortable" placeholder="please select one" v-model="selectedOptionForPhone">
-        <!--TODO: Fill in with actual values-->
-        <!--TODO: Find a way to wrap the text on mobile devices-->
-        <option disabled value=""> Select one</option>
-        <option> comfortable </option>
-        <option> weary </option>
-        <option> uncomfortable </option>
-      </select>       
-      <label class="form-input-label inputLabel col-12 col-md-6"> using my mobile device </label>
-    </div>
+      <div class="row field-group" v-if="isPlaceAnswered">
+        <md-input-container class="col-md-2 offset-md-2">
+          <label > and I feel </label>
+          <md-select  v-focus="isPlaceAnswered" id="selectTwo" v-model="selectedOptionForPhone" class="opt">
+            <!--<md-option disabled value=""> Select answer2 </md-option>-->
+            <md-option> Select one </md-option>
+            <md-option> weary </md-option>
+            <md-option> uncomfortable </md-option>
+          </md-select>
+        </md-input-container>
+        <p class="pt-md-20" id="usingPhone" > using my phone </p>
+      </div>
 
    <br>
    <br>
    <br>
 
-<<<<<<< HEAD
     
   <div class="row">
     <br>
     <br>
     <div class="col-md-12">
-      <md-buttonstyle="background-color: #31117D; color: white;" id="next" 
+      <md-button style="background-color: #31117D; color: white;" id="next" 
       class="mdc-button
             mdc-button--raised
             mdc-button--primary
             mdc-ripple-surface mdc-theme--primary-bg" 
       data-mdc-auto-init="MDCRipple" v-focus="isEligible" :disabled="!isEligible"  v-on:click="clicked"> Next </md-button>
-=======
-    <div class="row">
-        <br>
-        <br>
-        <div class="col-md-12">
-          <button v-on:click="clicked" v-focus="isEligible" :disabled="!isEligible" id="next"> Submit </button>
-        </div>
-      </div>
->>>>>>> prototypeVue
     </div>
   </div>
   </div>

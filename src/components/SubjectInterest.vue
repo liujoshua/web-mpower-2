@@ -8,7 +8,7 @@
 
     <div class="row field-group">
       <md-input-container class="col-md-6 offset-md-2 pl-2 pl-md-0 ">
-        <md-select v-focus="true" id="selectOne" v-model="selectedOptionOne">
+        <md-select v-focus="true" id="selectOne" v-model="selectedOptionOne" class="pageTwo">
           <md-option disabled value=""> Select answer </md-option>
           <md-option> have parkinsons </md-option>
           <md-option> have another movement disorder </md-option>
@@ -57,9 +57,6 @@ export default {
     isEligible: function () {
       return (this.isInterested && this.isWilling)
     },
-    // TODO- Change functionality
-    // needs modified functionality, will update once more information about
-    // other possible choices
     isInterested: function () {
       return (this.selectedOptionOne !== '')
     },
@@ -72,28 +69,10 @@ export default {
       if (this.isEligible) {
         this.$router.push('Eligibility')
       }
-    },
-    computed: {
-      isEligible: function () {
-        return (this.isInterested && this.isWilling)
-      },
-      isInterested: function () {
-        return (this.selectedOptionOne !== '')
-      },
-      isWilling: function () {
-        return (this.selectedOptionTwo !== '')
-      }
-    },
-    methods: {
-      clicked () {
-        if (this.isEligible) {
-          this.$router.push('Eligibility')
-        }
-      }
-    },
-    directives: {
-      Focus
     }
+  },
+  directives: {
+    Focus
   }
 }
 </script>
