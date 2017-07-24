@@ -76,11 +76,9 @@
   select, input {
     border-style: none none solid none !important;
     &:focus {
-      /*box-shadow: 0px 1px 0px #5cb3fd;*/
       -webkit-box-shadow: 0px 0px 29px 3px rgba(92,179,253,0.63);
       -moz-box-shadow: 0px 0px 29px 3px rgba(92,179,253,0.63);
       box-shadow: 0px 0px 29px 3px rgba(92,179,253,0.63);
-      /*background-color: yellow !important;*/
     }
   }
 
@@ -119,8 +117,6 @@
         margin-left: 7% !important;
     }
   }
-
-
 
   footer {
     display: none;
