@@ -23,12 +23,10 @@
 
 
     <br class="visible-md-up">
-    <br class="visible-md-up">
 
 
     <div class="row" v-if="isInterested">
       <p class="pageOne col-md-8 offset-md-2 pl-2 pl-md-0"> and I would be willing to try </p>
-      <br class="visible-md-up">
       <br class="visible-md-up">
       <br class="visible-md-up">
 

@@ -10,13 +10,9 @@
       </div>
 
       <div class="col-sm-7 text-left">
-        <p> Congratulations, you're eligible! </p>
-        <br>
-        <br>
+        <p class="large"> Congratulations, you're eligible! </p>
         <p class="lead"> It's now time for consent, how does it work? </p>
-        <br>
-        <br>
-        <p class="regular">
+        <p class="lead light">
           There will be 13 sections in the consent process. These
           sections will help you to understand what is involved and how the study will
           work, After the consent introduction, there will be a short quiz on what
