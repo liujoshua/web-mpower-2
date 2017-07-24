@@ -13,7 +13,7 @@
         <p> Congratulations, you're eligible! </p>
         <br>
         <br>
-        <p class="tiny"> It's now time for consent, how does it work? </p>
+        <p class="lead"> It's now time for consent, how does it work? </p>
         <br>
         <br>
         <p class="regular">
@@ -24,10 +24,10 @@
         </p>
         <br>
         <br>
-        <button id="walkthrough" > I'd like a walkthrough </button>
+
       </div>
     </div>
-
+    <button id="walkthrough" > I'd like a walkthrough </button>
 
   </div>
 
@@ -39,7 +39,3 @@
     name: 'congratulations'
   }
 </script>
-
-<style>
-
-</style>

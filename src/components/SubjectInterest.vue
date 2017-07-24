@@ -3,11 +3,11 @@
     <div class="row">
       <br>
       <br>
-      <p class="pageOne col-md-8 md-offset-2 pl-2 pl-md-0"> I'm interested in joining the mPower study because I </p>
+      <p class="pageOne col-md-8 offset-md-2 pl-2 pl-md-0"> I'm interested in joining the mPower study because I </p>
     </div>
-  
+
     <br class="visible-md-up">
-  
+
     <div class="row">
       <select v-focus="true" class="col-md-6 offset-md-2 custom-select pl-2 pl-md-0 customizedSelect" id="selectOne" v-model="selectedOptionOne">
         <option disabled value=""> Select answer </option>
