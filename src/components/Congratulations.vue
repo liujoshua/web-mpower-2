@@ -20,10 +20,10 @@
         </p>
         <br>
         <br>
+        <button class="col-md-6 col-12" id="walkthrough" > I'd like a walkthrough </button>
 
       </div>
     </div>
-    <button id="walkthrough" > I'd like a walkthrough </button>
 
   </div>
 

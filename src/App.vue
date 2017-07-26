@@ -116,6 +116,7 @@
         width: 80%;
         margin-left: 7% !important;
     }
+    margin-left: auto;
   }
 
   footer {

@@ -23,4 +23,20 @@ describe('SubjectInterest.vue', () => {
       })
     })
   )
+  describe('willing to try the study option one', () =>
+    it('should show this study option', done => {
+      const Constructor = Vue.extend(SubjectInterest)
+      const vm = new Constructor().$mount()
+      vm.selectedOptionOne = 'have parkinsons'
+
+      Vue.nextTick(() => {
+        setTimeout(function () {
+          expect(vm.$el.querySelector('#selectTwo').textContent.trim())
+            .to.equal('Please select one  this study   parts of this study')
+          // expect(vm.$el.querySelector('#selectTwo')).toBeFocused() if we import jasmine then we can expand testing for functions like this
+          done()
+        })
+      })
+    }
+    ))
 })

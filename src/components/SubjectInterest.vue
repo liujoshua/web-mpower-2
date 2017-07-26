@@ -9,16 +9,18 @@
     <br class="visible-md-up">
 
     <div class="row">
-      <select v-focus="true" class="col-md-6 offset-md-2 custom-select pl-2 pl-md-0 customizedSelect" id="selectOne" v-model="selectedOptionOne">
-        <option disabled value=""> Select answer </option>
-        <!--TODO: Fill in with actual values-->
-        <!--TODO: Find a way to wrap the text on mobile devices-->
-        <option> have parkinsons </option>
-        <option> have another movement disorder </option>
-        <option> would like to be a control subject </option>
-        <option> am a researcher reviewing the study </option>
-        <optgroup label=""></optgroup>
-      </select>
+      <form class="col-md-6 offset-md-2 pl-2 pl-md-0" >
+        <select v-focus="true" class="custom-select  customizedSelect" id="selectOne" v-model="selectedOptionOne">
+          <option disabled value=""> Select answer </option>
+          <!--TODO: Fill in with actual values-->
+          <!--TODO: Find a way to wrap the text on mobile devices-->
+          <option> have parkinsons </option>
+          <option> have another movement disorder </option>
+          <option> would like to be a control subject </option>
+          <option> am a researcher reviewing the study </option>
+          <optgroup label=""></optgroup>
+        </select>
+      </form>
     </div>
 
 
@@ -41,7 +43,7 @@
 
     <br>
     <br>
-    <button v-focus="isEligible" :disabled="!isEligible" id="next" v-on:click="clicked"> Next </button>
+    <button type="submit" v-focus="isEligible" id="next" v-on:click="clicked"> Next </button>
 
   </div>
 </template>
