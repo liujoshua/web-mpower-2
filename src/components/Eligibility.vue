@@ -18,7 +18,7 @@
       </div>
 
       <!-- TODO: Import lodash so that this message does not immediately prompt-->
-      <div v-if="isUnderage" class="alert alert-danger col-md-4 offset-md-4" role="alert">
+      <div v-if="isUnderage" class="alert alert-danger col-md-4 offset-md-4" id="errorMessage" role="alert">
         <strong>Sorry.</strong> Participants must be at least 18 years of age to register.
       </div>
 
