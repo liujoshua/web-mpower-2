@@ -8,13 +8,13 @@
     </div>
     <br>
     <br>
-
+    <!--TODO: Make better accesibile elements, currently the page is not navigatable vie keybaord if trying to backtrack on the page-->
     <div class="row">
       <!-- Field input one -->
       <div class="input-group col-md-4 offset-md-2">
-        <label class="form-input-label mr-3"> I am </label>
+        <label class="form-input-label mr-3" for="ageField"> I am </label>
         <input v-focus="age.length < 3" v-model.number="age" type="number" pattern="\d*" class="form-control"
-               id="ageField" placeholder="enter age" min=0  max=100>
+               id="ageField" placeholder="enter age" min=0  max=100 >
       </div>
 
       <!-- TODO: Import lodash so that this message does not immediately prompt-->
@@ -24,8 +24,8 @@
 
       <!--Field input two-->
       <div v-if="isUnderage !== null && !isUnderage" class="input-group col-md-4">
-        <label class="form-input-label mr-2"> I live in </label>
-        <input v-focus="isUnderage !== null && !isUnderage && zipCode.length < 5" v-model="zipCode" id="placeField"
+        <label class="form-input-label mr-2" for="placeField"> I live in </label>
+        <input v-focus="isUnderage !== null && !isUnderage && zipCode.length < 5" v-model.number="zipCode" id="placeField"
                class="form-control" type="number" pattern="\d*" placeholder="enter 5-digit zip"></input>
       </div>
     </div>
@@ -87,7 +87,7 @@
         }
       },
       isPlaceAnswered: function () {
-        return (this.zipCode !== '' && this.zipCode.length >= 5)
+        return (this.zipCode !== '' && this.zipCode >= 10000)
       },
       hasChosenOption: function () {
         return (this.selectedOptionForPhone !== '')
