@@ -11,7 +11,7 @@
     <!--TODO: Make better accesibile elements, currently the page is not navigatable vie keybaord if trying to backtrack on the page-->
     <div class="row">
       <!-- Field input one -->
-      <div class="input-group col-md-4 offset-md-2">
+      <div class="input-group col-md-4 offset-md-2 p-0">
         <label class="form-input-label mr-3" for="ageField"> I am </label>
         <input v-focus="age.length < 3" v-model.number="age" type="number" pattern="\d*" class="form-control"
                id="ageField" placeholder="enter age" min=0  max=100 >
@@ -23,7 +23,7 @@
       </div>
 
       <!--Field input two-->
-      <div v-if="isUnderage !== null && !isUnderage" class="input-group col-md-4">
+      <div v-if="isUnderage !== null && !isUnderage" class="input-group col-md-4 p-0">
         <label class="form-input-label mr-2" for="placeField"> I live in </label>
         <input v-focus="isUnderage !== null && !isUnderage && zipCode.length < 5" v-model.number="zipCode" id="placeField"
                class="form-control" type="number" pattern="\d*" placeholder="enter 5-digit zip"></input>
@@ -36,19 +36,18 @@
     </div>-->
 
     <!--Field input three-->
-    <div class="row input-group" v-if="isPlaceAnswered">
-      <label class="col-6 form-input-label col-md-2 mr-0 offset-md-2" style="max-width: 130px;">
-        and I feel </label>
-      <select v-focus="isPlaceAnswered" class="col-6 custom-select ml-0 col-md-2" id="comfortable"
-              placeholder="please select one" v-model="selectedOptionForPhone">
+    <div class="row" v-if="isPlaceAnswered">
+      <span class="form-input-label  mr-2 offset-md-2">
+        and I feel </span>
+      <select v-focus="isPlaceAnswered" class="col-7 custom-select ml-0 col-md-3 pl-0 pl-md-2 text-md-center" id="comfortable"
+              placeholder="please select one" v-model="selectedOptionForPhone" style="white-spce:nowrap !important;">
         <!--TODO: Fill in with actual values-->
-        <!--TODO: Find a way to wrap the text on mobile devices-->
         <option disabled value=""> Select one</option>
         <option> comfortable </option>
         <option> weary </option>
         <option> uncomfortable </option>
       </select>
-      <label class="form-input-label col-12 col-md-6"> using my mobile device </label>
+      <label class="form-input-label col-12 col-md-5 p-0"> using my mobile device </label>
     </div>
 
     <br>
@@ -59,7 +58,7 @@
       <br>
       <br>
       <div class="col-md-12">
-        <button v-on:click="clicked" v-focus="isEligible" :disabled="!isEligible" id="next"> Submit </button>
+        <button v-on:click="clicked" v-bind:class="{dim: !isEligible}" v-focus="isEligible" id="next"> Submit </button>
       </div>
     </div>
   </div>
@@ -112,5 +111,9 @@
 <style scoped>
   button:disabled {
     opacity: 0.5;
+  }
+  /* Work around for diabled button interfering with when the button gets focused in on*/
+  .dim {
+      opacity: 0.5    
   }
 </style>

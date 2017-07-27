@@ -6,10 +6,8 @@
       <p class="pageOne col-md-8 offset-md-2 pl-2 pl-md-0"> I'm interested in joining the mPower study because I </p>
     </div>
 
-    <br class="visible-md-up">
-
     <div class="row">
-      <form class="col-md-6 offset-md-2 pl-2 pl-md-0" >
+      <form class="col-md-6 offset-md-2 pl-0 pl-md-0" >
         <select v-focus="true" class="custom-select  customizedSelect" id="selectOne" v-model="selectedOptionOne">
           <option disabled value=""> Select answer </option>
           <!--TODO: Fill in with actual values-->
@@ -22,11 +20,7 @@
         </select>
       </form>
     </div>
-
-
     <br class="visible-md-up">
-
-
     <div class="row" v-if="isInterested">
       <p class="pageOne col-md-8 offset-md-2 pl-2 pl-md-0"> and I would be willing to try </p>
       <br class="visible-md-up">
@@ -43,7 +37,7 @@
 
     <br>
     <br>
-    <button type="submit" v-focus="isEligible" id="next" v-on:click="clicked"> Next </button>
+    <button type="submit" v-bind:class="{dim: !isEligible}" v-focus="isEligible" id="next" v-on:click="clicked"> Next </button>
 
   </div>
 </template>
@@ -87,4 +81,8 @@
   button:disabled {
     opacity: 0.5;
   }
+  .dim {
+      opacity: 0.5    
+  }
+  
 </style>
