@@ -44,23 +44,28 @@
 
 <script>
   import { Focus } from '@/directives/focus.js'
+  import _ from 'lodash'
+
   export default {
     name: 'subjectInterest',
     data () {
       return {
         selectedOptionOne: '',
-        selectedOptionTwo: ''
+        selectedOptionTwo: '',
+        isInterested: false,
+        isWilling: false,
+        isEligible: false
       }
     },
-    computed: {
-      isEligible: function () {
-        return (this.isInterested && this.isWilling)
+    watch: {
+      selectedOptionOne: function (newOption) {
+        this.setIsInterested()
       },
-      isInterested: function () {
-        return (this.selectedOptionOne !== '')
+      selectedOptionTwo: function (newOption) {
+        this.setIsWilling()
       },
-      isWilling: function () {
-        return (this.selectedOptionTwo !== '')
+      isWilling: function (newValue) {
+        this.setIsEligible()
       }
     },
     methods: {
@@ -68,7 +73,22 @@
         if (this.isEligible) {
           this.$router.push('Eligibility')
         }
-      }
+      },
+      setIsInterested: _.debounce(
+        function () {
+          this.isInterested = (this.selectedOptionOne !== '')
+        },
+      500),
+      setIsWilling: _.debounce(
+        function () {
+          this.isWilling = (this.isInterested && this.selectedOptionTwo !== '')
+        },
+      500),
+      setIsEligible: _.debounce(
+        function () {
+          this.isEligible = (this.isWilling && this.isInterested)
+        }, 250
+      )
     },
     directives: {
       Focus

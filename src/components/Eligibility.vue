@@ -25,15 +25,15 @@
       <!--Field input two-->
       <div v-if="isUnderage !== null && !isUnderage" class="input-group col-md-4 p-0">
         <label class="form-input-label mr-2" for="placeField"> I live in </label>
-        <input v-focus="isUnderage !== null && !isUnderage && zipCode.length < 5" v-model.number="zipCode" id="placeField"
+        <input v-focus="isUnderage !== null && !isUnderage && zipCode === ''" v-model.number="zipCode" id="placeField"
                class="form-control" type="number" pattern="\d*" placeholder="enter 5-digit zip"></input>
       </div>
     </div>
 
     <!--TODO: incorporate error message without immediately prompting the user -->
-    <!--<div v-if="zipCode !== '' && zipCode.length < 5" class="alert alert-danger col-md-4 offset-md-4" role="alert">
-      <strong>Sorry.</strong> Unrecognized zipcode, if there is a mistake please email sagebase.org
-    </div>-->
+    <div v-if="isPlaceAnswered !== null && !isPlaceAnswered" class="alert alert-danger col-md-4 offset-md-4" role="alert">
+      <strong>Sorry.</strong> Zipcodes must contain at least 5 numbers, if there is a mistake please email sagebase.org
+    </div>
 
     <!--Field input three-->
     <div class="row" v-if="isPlaceAnswered">
@@ -64,35 +64,31 @@
   </div>
 </template>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
-
 <script>
   import {Focus} from '@/directives/focus.js'
+  import _ from 'lodash'
   export default {
     data () {
       return {
         age: '',
         zipCode: '',
-        selectedOptionForPhone: ''
+        selectedOptionForPhone: '',
+        isUnderage: null,
+        isPlaceAnswered: null,
+        hasChosenOption: false,
+        isEligible: false
       }
     },
-    computed: {
-      isUnderage: function () {
-        if (this.age === '') {
-          return null
-        } else {
-          return this.age < 18
-        }
+    watch: {
+      age: function (newAge) {
+        this.setIsUnderage()
       },
-      isPlaceAnswered: function () {
-        return (this.zipCode !== '' && this.zipCode >= 10000)
+      zipCode: function (newZip) {
+        this.setIsPlaceAnswered()
       },
-      hasChosenOption: function () {
-        return (this.selectedOptionForPhone !== '')
-      },
-      isEligible: function () {
-        return (!this.isUnderage && this.isPlaceAnswered && this.hasChosenOption)
+      selectedOptionForPhone: function (newOption) {
+        this.setHasChosenOption()
+        this.setIsEligible()
       }
     },
     methods: {
@@ -100,7 +96,31 @@
         if (this.isEligible) {
           this.$router.push('Congratulations')
         }
-      }
+      },
+      setIsUnderage: _.debounce(
+        function () {
+          if (this.age === '') {
+            this.isUnderage = null
+          } else {
+            this.isUnderage = this.age < 18
+          }
+        }, 500
+      ),
+      setIsPlaceAnswered: _.debounce(
+        function () {
+          this.isPlaceAnswered = (this.zipCode !== '' && this.zipCode >= 10000)
+        }, 750
+      ),
+      setHasChosenOption: _.debounce(
+        function () {
+          this.hasChosenOption = (this.selectedOptionForPhone !== '')
+        }, 500
+      ),
+      setIsEligible: _.debounce(
+        function () {
+          this.isEligible = (!this.isUnderage && this.isPlaceAnswered && this.hasChosenOption)
+        }, 500
+      )
     },
     directives: {
       Focus
