@@ -7,57 +7,53 @@
       We'd just like to know a couple more things about you to make sure you're eligible
     </div>
     <br>
-    <br>
     <!--TODO: Make better accesibile elements, currently the page is not navigatable vie keybaord if trying to backtrack on the page-->
     <div class="row">
       <!-- Field input one -->
-      <div class="input-group col-md-4 offset-md-2 p-0">
-        <label class="form-input-label mr-3" for="ageField"> I am </label>
-        <input v-focus="age.length < 3" v-model.number="age" type="number" pattern="\d*" class="form-control"
-               id="ageField" placeholder="enter age" min=0  max=100 >
+      <div class="mr-2 col-12 col-sm-auto text-center offset-md-2">
+        I am
       </div>
+    
+      <input v-model.number="age" type="number" pattern="\d*" class=" lead light col-12 col-sm-2 phoneInput"
+              id="ageField" placeholder="enter age" min=0  max=100 >
 
       <!-- TODO: Import lodash so that this message does not immediately prompt-->
-      <div v-if="isUnderage" class="alert alert-danger col-md-4 offset-md-4" id="errorMessage" role="alert">
+      <div v-if="isUnderage" class="alert alert-danger col-md-4 offset-md-4" id="ageError" role="alert">
         <strong>Sorry.</strong> Participants must be at least 18 years of age to register.
       </div>
 
       <!--Field input two-->
-      <div v-if="isUnderage !== null && !isUnderage" class="input-group col-md-4 p-0">
-        <label class="form-input-label mr-2" for="placeField"> I live in </label>
-        <input v-focus="isUnderage !== null && !isUnderage && zipCode === ''" v-model.number="zipCode" id="placeField"
-               class="form-control" type="number" pattern="\d*" placeholder="enter 5-digit zip"></input>
+      <div v-if="isUnderage !== null && !isUnderage" class="text-center col-12 col-sm-auto">
+        <label class="form-input-label mr-2" for="placeField" id="live"> I live in </label>
       </div>
+      <input v-if="isUnderage !== null && !isUnderage" v-model.number="zipCode" id="placeField"
+              class="text-center lead light col-12 col-md-3 md-input-invalid phoneInput" type="number" pattern="\d*" placeholder="enter 5-digit zip"></input>
     </div>
 
-    <!--TODO: incorporate error message without immediately prompting the user -->
-    <div v-if="isPlaceAnswered !== null && !isPlaceAnswered" class="alert alert-danger col-md-4 offset-md-4" role="alert">
+    <div v-if="isPlaceAnswered !== null && !isPlaceAnswered" class="alert lead light alert-danger col-md-4 offset-md-4" role="alert" id="zipError">
       <strong>Sorry.</strong> Zipcodes must contain at least 5 numbers, if there is a mistake please email sagebase.org
     </div>
 
     <!--Field input three-->
     <div class="row" v-if="isPlaceAnswered">
-      <span class="form-input-label  mr-2 offset-md-2">
-        and I feel </span>
-      <select v-focus="isPlaceAnswered" class="col-7 custom-select ml-0 col-md-3 pl-0 pl-md-2 text-md-center" id="comfortable"
+      <div class="text-center col-12 col-sm-auto offset-md-2 mr-2 phoneInput">
+        and I feel </div>
+      <select class="col-12 col-md-3 custom-select lead light text-center phoneInput" id="comfortable"
               placeholder="please select one" v-model="selectedOptionForPhone" style="white-spce:nowrap !important;">
         <!--TODO: Fill in with actual values-->
         <option disabled value=""> Select one</option>
-        <option> comfortable </option>
-        <option> weary </option>
-        <option> uncomfortable </option>
+        <option > comfortable </option>
+        <option > weary </option>
+        <option >  uncomfortable </option>
       </select>
-      <label class="form-input-label col-12 col-md-5 p-0"> using my mobile device </label>
+      <label class="text-center col-sm-auto col-12"> using my phone </label>
     </div>
 
     <br>
-    <br>
-    <br>
-
     <div class="row">
       <br>
       <br>
-      <div class="col-md-12">
+      <div class="col-md-12" v-if="isEligible">
         <button v-on:click="clicked" v-bind:class="{dim: !isEligible}" v-focus="isEligible" id="next"> Submit </button>
       </div>
     </div>
@@ -92,9 +88,14 @@
       }
     },
     methods: {
+      scrollPage: _.debounce(
+        function (arg1) {
+          this.$scrollTo(arg1, 2500, { easing: 'linear' })
+        }
+      , 200),
       clicked () {
         if (this.isEligible) {
-          this.$router.push('Congratulations')
+          this.$router.push('Congratulations') // TODO: Flip to the top of the next page
         }
       },
       setIsUnderage: _.debounce(
@@ -104,12 +105,22 @@
           } else {
             this.isUnderage = this.age < 18
           }
+          if (!this.isUnderage) {
+            this.scrollPage('#live')
+          } else {
+            this.scrollPage('#ageError')
+          }
         }, 500
       ),
       setIsPlaceAnswered: _.debounce(
         function () {
           this.isPlaceAnswered = (this.zipCode !== '' && this.zipCode >= 10000)
-        }, 750
+          if (this.isPlaceAnswered) {
+            this.scrollPage('#comfortable')
+          } else {
+            this.scrollPage('#zipError')
+          }
+        }, 500
       ),
       setHasChosenOption: _.debounce(
         function () {
@@ -119,6 +130,9 @@
       setIsEligible: _.debounce(
         function () {
           this.isEligible = (!this.isUnderage && this.isPlaceAnswered && this.hasChosenOption)
+          if (this.isEligible) {
+            this.scrollPage('#next')
+          }
         }, 500
       )
     },

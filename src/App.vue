@@ -102,20 +102,29 @@
     @media (max-width: 767px) {
       margin-left: 30% !important;
       width: 40%;
-      bottom: 20px;
-      position: fixed;
-      z-index: 1000;
     }
     
     border-radius: 5px;
     background-color: #31117D;
     border: thin;
     color: white;
-    // padding: 15px 32px;
     padding: 5px 5px;
     text-transform: uppercase;
     width: 20%;
     margin-left: 43%;
+  }
+
+  select{
+      text-align-last:center;
+      padding-right: 29px;
+      direction: ltr;
+  }
+
+  .phoneInput {
+      @media(max-width: 767px) {
+          max-width: 80%;
+          margin-left: 10%;
+      }
   }
 
   button#walkthrough {
