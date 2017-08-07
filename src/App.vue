@@ -4,23 +4,45 @@
     <nav class="navbar navbar-fixed-top navbar-light">
       <div class="navbar-header">
         <div class="row">
-          <div class="col-12 text-center text-md-left col-md-4">
+          <div class="col-12 text-center text-md-left col-md-4 home">
             <!-- making the name a hyperlink is for dev purposes.
             so that getting to main page is easy, will replace or change
             at a later time -->
-            <h1><a href="#"> mPower </a></h1>
+            <h1><a href="#"> <- mPower </a></h1>
           </div>
 
-          <div class="col-md-8 text-md-right text-center">
-            <img src="./images/check.png" class="img-fluid" id="check" alt="image of a check marked circle"></img>
-            <img src="./images/survey.svg" class="board"></img>
-            <img src="./images/ic_lock_black_48px.svg"></img>
-            <img src="./images/ic_lock_black_48px.svg"></img>
-            <img src="./images/ic_lock_black_48px.svg"></img>
+          <div class="col-md-8 text-md-right text-center pt-2">
+            <figure class="custom-fig">
+              <img src="./images/check.png" class="img-fluid check" alt="image of a check marked circle"></img>
+              <figcaption id="status"> Eligibility </figcaption>
+            </figure>
+            <!--  For keeping all the images even  -->
+            <figure class="custom-fig">
+              <img src="./images/survey.svg" ></img>
+              <figcaption class="hidden"> . </figcaption>
+            </figure>
+            
+            <figure class="custom-fig ">
+              <img src="./images/ic_lock_black_48px.svg" ></img>
+              <figcaption class="hidden"> . </figcaption>
+            </figure>
+            
+            <figure class="custom-fig img-fluid">
+              <img src="./images/ic_lock_black_48px.svg" ></img>
+              <figcaption class="hidden"> . </figcaption>
+            </figure>
+            
+            <figure class="custom-fig img-fluid">
+              <img src="./images/ic_lock_black_48px.svg" ></img>
+              <figcaption class="hidden"> . </figcaption>
+            </figure>
           </div>
+
         </div>
       </div>
     </nav>
+      <br>
+      <br>
 
     <router-view class="router container-fluid"></router-view>
     <!--- TODO: must update to make sure application is only single page -->
@@ -32,10 +54,38 @@
   </div>
 </template>
 
-<!--<style src="./style_guide.css"></style>-->
-
 <style lang="scss">
   @import 'css/bootstrap/bootstrap';
+  #status {    
+      font-weight: 300;
+      color: #000000;
+      opacity: 0.54;
+      font-size: 14px;
+  }
+  
+  .home  {
+    background-color: #31117D !important;
+    & * {
+        color: white !important; //possibly have purple rectangle and then go full width on mobile
+    }
+  }
+
+  .custom-fig {
+      display: inline-block;
+  }
+
+  figure {
+      @media (min-width: 767px) {
+          padding-left: 2%;
+          padding-right: 2%;
+      }
+  }
+  // to use the current setup with captioning the first image, must put blank
+  // text in the other captions, may change later
+  figcaption.hidden {
+      opacity: 0.0;
+      font-size: 14px;
+  }
 
   .router {
     margin-top: 150px;
@@ -54,7 +104,11 @@
     z-index: 1000 !important;    
     background-color: white;
     width: 100%;
-    img {
+
+  }
+
+
+   nav * img {
       border-radius: 50%;
       background-color: rgba(65, 73, 90, 0.1);
       margin-left: 2px;
@@ -62,21 +116,17 @@
       top: 50% !important;
       height: 55px;
       width: 55px;
-    }
-
-    @media (max-width: 767px) {
-        height: 120px;
-        img {
-            height: 45px;
-            width: 45px;
-        }
-    }
-
-    img#check {
+      &.check {
         box-shadow: 0 0 12px 0 #D5D5D5;
-    }
+      }
+   }
 
-  }
+   @media (max-width: 767px) {
+      nav * img {
+        height: 45px !important;
+        width: 45px !important;
+      }
+    }
 
   select, input {
     border-style: none none solid none !important;
