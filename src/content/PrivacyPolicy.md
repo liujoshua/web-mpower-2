@@ -2,7 +2,7 @@
 
 Effective date: &lt;Date&gt;
 
-  
+# _THIS PRIVACY POLICY IS FOR ELEVATEMS AND NEEDS TO BE UPDATED_  
 
 Sage Bionetworks (“Sage Bionetworks, “we,” or “us”) is a 501(c)(3) nonprofit biomedical research organization in the United States.
 
