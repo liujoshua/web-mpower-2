@@ -1,7 +1,7 @@
 <template>
-  <div id="app" class="container-fluid">
+  <div id="app">
 
-    <nav class="navbar fixed-top navbar-light bg-faded customNav">
+    <nav class="navbar navbar-fixed-top navbar-light">
       <div class="navbar-header">
         <div class="row">
           <div class="col-12 text-center text-md-left col-md-4">
@@ -22,7 +22,7 @@
       </div>
     </nav>
 
-    <router-view class="router"></router-view>
+    <router-view class="router container-fluid"></router-view>
     <!--- TODO: must update to make sure application is only single page -->
 
 
@@ -43,24 +43,70 @@
   </div>
 </template>
 
+<!--<style src="./style_guide.css"></style>-->
 
 <style lang="scss">
-  @import './css/style_guide.css';
-  @import './css/bootstrap.min.css';
+  @import 'css/bootstrap/bootstrap';
+
+  .router {
+    margin-top: 50px;
+  }
+
+  nav {
+    box-shadow: 0 2px 3px 0 rgba(141, 141, 141, 0.5);
+    img {
+      border-radius: 50%;
+      background-color: rgba(65, 73, 90, 0.1);
+      margin-left: 2px;
+      margin-right: 2px;
+      height: 45px;
+      width: 45px;
+    }
+  }
+
+  select, input {
+    border-style: none none solid none !important;
+    &:focus {
+      /*box-shadow: 0px 1px 0px #5cb3fd;*/
+      -webkit-box-shadow: 0px 0px 29px 3px rgba(92,179,253,0.63);
+      -moz-box-shadow: 0px 0px 29px 3px rgba(92,179,253,0.63);
+      box-shadow: 0px 0px 29px 3px rgba(92,179,253,0.63);
+      /*background-color: yellow !important;*/
+    }
+  }
+
+  input {
+    text-align: center;
+  }
+
+  circle {
+    fill: lightgray;
+    stroke-width: 5;
+    box-shadow: 10px 10px 10px #888888;
+  }
+
+  button {
+    @media (max-width: 767px) {
+      margin-left: 30% !important;
+      width: 40%;
+      bottom: 20px;
+      position: fixed;
+      z-index: 1000;
+    }
+
+    border-radius: 5px;
+    background-color: #31117D;
+    border: thin;
+    color: white;
+    padding: 15px 32px;
+    text-transform: uppercase;
+  }
 
   footer {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    display: none;
+  }
 
-    @media(max-width: 768px) {
-      display: none;
-      position: relative;
-    }
-
-    nav li {
-      display: inline-block;
-    }
+  .lead {
+    color: #3b4a63;
   }
 </style>
