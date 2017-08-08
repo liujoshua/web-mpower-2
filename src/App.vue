@@ -1,41 +1,24 @@
 <template>
-  <div id="app">
-
+  <div id="app" name="top">
+<!--open sans, lato 40px-->
     <nav class="navbar navbar-fixed-top navbar-light pt-0 pb-0">
       <div class="navbar-header">
         <div class="row">
-          <div class="col-12 text-center text-md-left col-md-4 home">
+
+          <div class="col-12 text-center text-md-left col-md-4">
             <!-- making the name a hyperlink is for dev purposes.
             so that getting to main page is easy, will replace or change
             at a later time -->
-            <h1 class="text-center pt-3 pb-3"><a href="#"> <- mPower </a></h1>
+            <h1 class="lead light tiny" id="status">  Eligibility </a></h1>
           </div>
 
-          <div class="col-md-8 text-md-right text-center pt-2">
-            <figure class="custom-fig">
+          <div class="col-md-8 text-md-right text-center">
               <img src="./images/check.png" class="img-fluid check" alt="image of a check marked circle"></img>
-              <figcaption id="status"> Eligibility </figcaption>
-            </figure>
-            <!--  For keeping all the images even  -->
-            <figure class="custom-fig">
+             <!--  For keeping all the images even  -->
               <img src="./images/survey.svg" ></img>
-              <figcaption class="hidden"> . </figcaption>
-            </figure>
-            
-            <figure class="custom-fig ">
+              <img src="./images/ic_lock_black_48px.svg" ></img>            
+              <img src="./images/ic_lock_black_48px.svg" ></img>           
               <img src="./images/ic_lock_black_48px.svg" ></img>
-              <figcaption class="hidden"> . </figcaption>
-            </figure>
-            
-            <figure class="custom-fig img-fluid">
-              <img src="./images/ic_lock_black_48px.svg" ></img>
-              <figcaption class="hidden"> . </figcaption>
-            </figure>
-            
-            <figure class="custom-fig img-fluid">
-              <img src="./images/ic_lock_black_48px.svg" ></img>
-              <figcaption class="hidden"> . </figcaption>
-            </figure>
           </div>
 
         </div>
@@ -43,11 +26,11 @@
     </nav>
       <br>
       <br>
-
-    <router-view class="router container-fluid"></router-view>
+    <router-view class="router container-fluid" ></router-view>
     <!--- TODO: must update to make sure application is only single page -->
 
     <footer class="footer">
+      <a href="#top"></a>
       <h2> Copyright 2017 SageBionetworks</h2>
     </footer>
 
@@ -58,16 +41,10 @@
   @import 'css/bootstrap/bootstrap';
   #status {    
       font-weight: 300;
-      color: #000000;
-      opacity: 0.54;
-      font-size: 14px;
-  }
-  
-  .home  {
-    background-color: #31117D !important;
-    & * {
-        color: white !important; //possibly have purple rectangle and then go full width on mobile
-    }
+      color: white;
+      @media (max-width: 767px) {
+        font-size: 24px;
+      }
   }
 
   .custom-fig {
@@ -90,10 +67,13 @@
   }
 
   .router {
-    margin-top: 150px;
+      // margin-top: 150px;
   }
 
   nav {
+
+    color: white !important;
+    background-color: #5B34B6 !important;
     box-shadow: 0 2px 3px 0 rgba(141, 141, 141, 0.5);
     min-height: 100px;
     // below is used for aligning the element in the middle vertically
@@ -112,7 +92,8 @@
 
    nav * img {
       border-radius: 50%;
-      background-color: rgba(65, 73, 90, 0.1);
+      // background-color: rgba(65, 73, 90, 0.1);
+      background-color: whitesmoke;
       margin-left: 2px;
       margin-right: 2px;
       top: 50% !important;
@@ -125,10 +106,11 @@
 
    @media (max-width: 767px) {
       nav * img {
-        height: 45px !important;
-        width: 45px !important;
+        height: 30px !important;
+        width: 30px !important;
       }
     }
+
 
   select, input {
     border-style: none none solid none !important;
@@ -170,6 +152,13 @@
       text-align-last:center;
       padding-right: 29px;
       direction: ltr;
+      &.customizedSelect {
+        min-height: 75px;
+      }
+  }
+
+  .custom-input {
+    display: inline !important;
   }
 
   .phoneInput {
@@ -202,4 +191,6 @@
   .light {
     font-weight: 300;
   }
+
+
 </style>

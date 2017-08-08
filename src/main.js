@@ -3,8 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/index'
+import Multiselect from 'vue-multiselect'
+
+  // register globally
 var vueScrollTo = require('vue-scrollto')
 Vue.use(vueScrollTo)
+Vue.component(Multiselect)
 
 Vue.config.productionTip = false
 

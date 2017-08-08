@@ -20,6 +20,7 @@
     "npmlog": "^4.1.2",
     "vue": "^2.3.3",
     "vue-lodash": "^1.0.3",
+    "vue-multiselect": "^2.0.2",
     "vue-router": "^2.3.1",
     "vue-scroll-to": "^2.0.1",
     "vue-scrollto": "^2.7.2"

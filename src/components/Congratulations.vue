@@ -20,7 +20,7 @@
         </p>
         <br>
         <br>
-        <button class="col-md-6 col-12" id="walkthrough" > I'd like a walkthrough </button>
+        <button class="col-md-9 col-12" id="walkthrough" > I'd like a walkthrough </button>
 
       </div>
     </div>

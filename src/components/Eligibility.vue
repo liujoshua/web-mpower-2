@@ -38,14 +38,39 @@
     <div class="row" v-if="isPlaceAnswered">
       <div class="text-center col-12 col-sm-auto offset-md-2 mr-2 phoneInput">
         and I feel </div>
-      <select class="col-12 col-md-3 custom-select lead light text-center phoneInput" id="comfortable"
-              placeholder="please select one" v-model="selectedOptionForPhone" style="white-spce:nowrap !important;">
+      <!--<select class="col-12 col-md-3 custom-select lead light text-center phoneInput" id="comfortable"
+              placeholder="please select one" v-model="selectedOptionForPhone" style="white-spce:nowrap !important;">-->
         <!--TODO: Fill in with actual values-->
-        <option disabled value=""> Select one</option>
+        <!--<option disabled value=""> Select one</option>
         <option > comfortable </option>
         <option > weary </option>
-        <option >  uncomfortable </option>
+        <option >  uncomfortable </option>-->
       </select>
+
+
+    <div class="col-md-8 offset-md-2" id="comfortable" v-if="isPlaceAnswered">
+     
+      <div v-bind:class="{dim: !(selectedOptionForPhone === null || selectedOptionForPhone === 'One')}">
+        <input type="radio" id="one" value="One" v-model="selectedOptionForPhone">
+        <label class="custom-input" for="one"> comfortable</label>
+        <br>
+      </div>
+    
+      <span v-bind:class="{dim: !(selectedOptionForPhone === null || selectedOptionForPhone === 'Two')}">
+        <input type="radio" id="two" value="Two" v-model="selectedOptionForPhone">
+        <label class="custom-input" for="two"> weary</label>
+        </label>
+        <br>
+      </span>
+
+      <span v-bind:class="{dim: !(selectedOptionForPhone === null || selectedOptionForPhone === 'Three')}">
+        <input type="radio" id="three" value="Three" v-model="selectedOptionForPhone">
+        <label class="custom-input" for="three"> uncomfortable</label>
+        </label>
+        <br>
+      </span>
+
+    </div>
       <label class="text-center col-sm-auto col-12"> using my phone </label>
     </div>
 
@@ -68,7 +93,7 @@
       return {
         age: '',
         zipCode: '',
-        selectedOptionForPhone: '',
+        selectedOptionForPhone: null,
         isUnderage: null,
         isPlaceAnswered: null,
         hasChosenOption: false,
@@ -90,7 +115,7 @@
     methods: {
       scrollPage: _.debounce(
         function (arg1) {
-          this.$scrollTo(arg1, 2500, { easing: 'linear' })
+          this.$scrollTo(arg1, 750, { easing: 'linear' })
         }
       , 200),
       clicked () {
