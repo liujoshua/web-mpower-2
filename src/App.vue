@@ -29,10 +29,10 @@
     <router-view class="router container-fluid" ></router-view>
     <!--- TODO: must update to make sure application is only single page -->
 
-    <footer class="footer">
+    <!--<footer class="footer">
       <a href="#top"></a>
       <h2> Copyright 2017 SageBionetworks</h2>
-    </footer>
+    </footer>-->
 
   </div>
 </template>
@@ -47,6 +47,20 @@
       }
   }
 
+  p {
+    color: #31117D;
+    font-size: $font-size-base !important;
+  }
+
+  label {
+    color: black !important;
+    font-size: $font-size-base * 0.85 !important;
+  }
+
+  div.input-group__hint {
+    font-size: $font-size-base * 0.45 !important;
+  }
+
   .custom-fig {
       display: inline-block;
   }
@@ -57,17 +71,24 @@
           padding-right: 2%;
       }
   }
-
-
-  // to use the current setup with captioning the first image, must put blank
-  // text in the other captions, may change later
-  figcaption.hidden {
-      opacity: 0.0;
-      font-size: 14px;
+  
+  span.chip, div {
+      font-size: $font-size-base * 0.80 !important;
   }
 
-  .router {
-      // margin-top: 150px;
+  .indicatorFilled {
+    background-color: #2196f3 !important;
+    opacity: 1 !important;
+  }
+  .indicatorEmpty {
+      position: fixed;
+      top: 90px !important;
+      width: 13%;
+      height: 10px;
+      color: transparent;
+      opacity: 0.2;
+      float: left;
+      background-color: #90cbf9;
   }
 
   nav {
@@ -75,7 +96,7 @@
     color: white !important;
     background-color: #5B34B6 !important;
     box-shadow: 0 2px 3px 0 rgba(141, 141, 141, 0.5);
-    min-height: 100px;
+    height: 90px;
     // below is used for aligning the element in the middle vertically
     display: flex;
     flex-direction: column;
