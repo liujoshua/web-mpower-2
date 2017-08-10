@@ -50,6 +50,7 @@
 
  input {
         font-size: $font-size-base * 0.85 !important;
+        margin-bottom: 3px !important;
   }
 
   div.input-group__hint {
@@ -92,15 +93,22 @@
     background-color: #2196f3 !important;
     opacity: 1 !important;
   }
+
+  .green {
+    background-color: #4caf50 !important;
+    width: 100% !important;
+    opacity: 1 !important;
+  }
   .indicatorEmpty {
       position: fixed;
       top: 90px !important;
-      width: 13%;
+      width: 16.3%;
       height: 10px;
       color: transparent;
       opacity: 0.2;
       float: left;
       background-color: #90cbf9;
+      z-index: 1000;
   }
 
   nav {
@@ -143,12 +151,6 @@
         width: 30px !important;
       }
     }
-
-
-  select, input {
-    // border-style: none none solid none !important;
-  }
-
   *:focus {
     -webkit-box-shadow: 0px 0px 29px 3px rgba(92,179,253,0.63);
     -moz-box-shadow: 0px 0px 29px 3px rgba(92,179,253,0.63);

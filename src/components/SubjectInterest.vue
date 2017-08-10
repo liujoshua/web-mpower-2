@@ -1,14 +1,18 @@
 <template>
   <v-app  id="start">
     <div class="row">
+    <span v-if="!isEligiblePartTwo">
     <div class="indicatorEmpty" v-bind:class="{indicatorFilled: isInterested}"> . </div>
-    <div class="indicatorEmpty offset-2" v-bind:class="{indicatorFilled: isWilling}"> .</div>
-    <div class="indicatorEmpty offset-4" v-bind:class="{indicatorFilled: isUnderage !== null && !isUnderage}"> .</div>
-    <div class="indicatorEmpty offset-6 " v-bind:class="{indicatorFilled: isPlaceAnswered}"> .</div>
-    <div class="indicatorEmpty offset-8" v-bind:class="{indicatorFilled: hasChosenOption}"> .</div> 
+    <div class="indicatorEmpty offset-2" v-bind:class="{indicatorFilled: selectedOptionTwo.length != 0 || selectedOptionThree !== ''}"> .</div>
+    <div class="indicatorEmpty offset-4" v-bind:class="{indicatorFilled: isWilling}"> .</div>
+    <div class="indicatorEmpty offset-6 " v-bind:class="{indicatorFilled: hasAnsweredWouldLike}"> .</div>
+    <div class="indicatorEmpty offset-8" v-bind:class="{indicatorFilled: isPlaceAnswered}"> .</div> 
     <div class="indicatorEmpty offset-10" v-bind:class="{indicatorFilled: hasChosenOption}"> .</div> 
+    </span>
+    <div class="indicatorEmpty green" v-if="isEligiblePartTwo"></div>
     <br>
     </div>
+    
 
     <div class="row">    
     <br>
@@ -36,22 +40,25 @@
       <div class="row" v-if="hasAnsweredWouldLike">
         <p class="lead col-md-8 offset-md-2"> We'd just like a few more pieces of information to make sure you're eligible </p>
 
-          <p class="col-md-auto offset-md-2"> I am &nbsp; </p>
-          <v-flex >
+          <p class="col-4 col-sm-auto offset-4 offset-sm-2"> I am  </p>
+          <v-flex class="col-12 col-sm-4">
             <v-text-field
+            suffix="years old"
               name="input-1"
               label="enter age"
               id="testing"
               type="number"
                pattern="\d*"
+               single-line
             v-model.number="age"
+            class="pb-4"
              ></v-text-field>
           </v-flex>
-          <v-flex class="col-md-auto" v-if="isUnderage !== null && !isUnderage">           
+          <v-flex class="col-6 col-sm-auto offset-3 offset-sm-0" v-if="isUnderage !== null && !isUnderage">           
             <p> I live in &nbsp; </p>
           </v-flex>
           <v-flex class="col-md-3" v-if="isUnderage !== null && !isUnderage">
-            <v-text-field  pattern="\d*" bottom name="input-1" label="5-digit zipcode" id="placeField" type="number" v-model.number="zipCode"></v-text-field>
+            <v-text-field suffix="zipcode" single-line pattern="\d*" bottom name="input-1" label="5-digit zipcode" id="placeField" type="number" v-model.number="zipCode"></v-text-field>
           </v-flex>
           
           <div v-if="isPlaceAnswered !== null && !isPlaceAnswered" class="alert lead light alert-danger col-md-4 offset-md-4" role="alert" id="zipError">
@@ -65,9 +72,9 @@
         </div>
   
       <div id="option" class="row" v-if="isPlaceAnswered">
-        <p class="offset-md-2 mr-4">
+        <p class="col-6 offset-3 col-sm-auto offset-md-2 mr-4">
           and I feel </p>
-        <v-select id="comfortable" class="col-md-4" label="Select your reason(s)" v-bind:items="phoneChoices" v-model="selectedOptionForPhone" chips hint="remove choices by clicking the X" persistent-hint></v-select>
+        <v-select id="comfortable" class="col-md-4 col-12" label="Select your reason(s)" v-bind:items="phoneChoices" v-model="selectedOptionForPhone" chips hint="remove choices by clicking the X" persistent-hint></v-select>
         </select>
         <p> using my phone </p>
       </div>
@@ -243,11 +250,7 @@ export default {
   },
   directives: {
     Focus
-  },
-  mounted:
-    function () {
-      this.scrollPage('#start')
-    }
+  }
 }
 </script>
 
