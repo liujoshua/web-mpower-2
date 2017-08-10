@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app  id="start">
     <div class="row">
     <div class="indicatorEmpty" v-bind:class="{indicatorFilled: isInterested}"> . </div>
     <div class="indicatorEmpty offset-2" v-bind:class="{indicatorFilled: isWilling}"> .</div>
@@ -12,8 +12,8 @@
 
     <div class="row">    
     <br>
-    <p class="pageOne col-md-8 offset-md-2 text-left "> I'm interested in joining the mPower study because I </p>
-    <v-select class="col-md-8 offset-md-2" label="Select your reason(s)" v-bind:items="interestChoices" v-model="selectedOptionOne" multiple chips hint="remove choices by clicking the X" persistent-hint></v-select>
+    <p class="col-md-8 offset-md-2 text-left "> I'm interested in joining the mPower study because I </p>
+    <v-select id="willing" class="col-md-8 offset-md-2" label="Select your reason(s)" v-bind:items="interestChoices" v-model="selectedOptionOne" multiple chips hint="remove choices by clicking the X" persistent-hint></v-select>
     </div>
 
     <div class="row" v-if="isInterested">
@@ -25,74 +25,51 @@
     
     </div>
 
+
     <div class="row" v-if="isWilling"> 
       <p class="col-md-8 offset-md-2 text-left"> What would you like from us? </p>
-      <v-select class="col-md-8 offset-md-2" label="Select choices" v-bind:items="returnChoices" v-model="selectedOptionFour" multiple chips hint="remove choices by clicking the X" persistent-hint></v-select>
+      <v-select id="wouldLike" class="col-md-8 offset-md-2" label="Select choices" v-bind:items="returnChoices" v-model="selectedOptionFour" multiple chips hint="remove choices by clicking the X" persistent-hint></v-select>
     
     </div>
       <br>
-      <!--TODO: Make better accesibile elements, currently the page is not navigatable vie keybaord if trying to backtrack on the page-->
+      <hr v-if="hasAnsweredWouldLike" id="partTwo">
       <div class="row" v-if="hasAnsweredWouldLike">
-        <!-- Field input one -->
-        <div class="mr-2 col-12 col-sm-auto text-center offset-md-2">
-          I am
+        <p class="lead col-md-8 offset-md-2"> We'd just like a few more pieces of information to make sure you're eligible </p>
+
+          <p class="col-md-auto offset-md-2"> I am &nbsp; </p>
+          <v-flex >
+            <v-text-field
+              name="input-1"
+              label="enter age"
+              id="testing"
+              type="number"
+               pattern="\d*"
+            v-model.number="age"
+             ></v-text-field>
+          </v-flex>
+          <v-flex class="col-md-auto" v-if="isUnderage !== null && !isUnderage">           
+            <p> I live in &nbsp; </p>
+          </v-flex>
+          <v-flex class="col-md-3" v-if="isUnderage !== null && !isUnderage">
+            <v-text-field  pattern="\d*" bottom name="input-1" label="5-digit zipcode" id="placeField" type="number" v-model.number="zipCode"></v-text-field>
+          </v-flex>
+          
+          <div v-if="isPlaceAnswered !== null && !isPlaceAnswered" class="alert lead light alert-danger col-md-4 offset-md-4" role="alert" id="zipError">
+            <strong>Sorry.</strong> Zipcodes must contain at least 5 numbers, if there is a mistake please email sagebase.org
+          </div>
+
         </div>
   
-        <input v-model.number="age" type="number" pattern="\d*" class=" lead light col-12 col-sm-2 phoneInput" id="ageField" placeholder="enter age" min=0 max=100>
-  
-        <!-- TODO: Import lodash so that this message does not immediately prompt-->
         <div v-if="isUnderage" class="alert alert-danger col-md-4 offset-md-4" id="ageError" role="alert">
           <strong>Sorry.</strong> Participants must be at least 18 years of age to register.
         </div>
   
-        <!--Field input two-->
-        <div v-if="isUnderage !== null && !isUnderage" class="text-center col-12 col-sm-auto">
-          <label class="form-input-label mr-2" for="placeField" id="live"> I live in </label>
-        </div>
-        <input v-if="isUnderage !== null && !isUnderage" v-model.number="zipCode" id="placeField" class="text-center lead light col-12 col-md-3 md-input-invalid phoneInput" type="number" pattern="\d*" placeholder="enter 5-digit zip"></input>
-      </div>
-  
-      <div v-if="isPlaceAnswered !== null && !isPlaceAnswered" class="alert lead light alert-danger col-md-4 offset-md-4" role="alert" id="zipError">
-        <strong>Sorry.</strong> Zipcodes must contain at least 5 numbers, if there is a mistake please email sagebase.org
-      </div>
-  
-      <!--Field input three-->
-      <div class="row" v-if="isPlaceAnswered">
-        <div class="text-center col-12 col-sm-auto offset-md-2 mr-2 phoneInput">
-          and I feel </div>
-        <!--<select class="col-12 col-md-3 custom-select lead light text-center phoneInput" id="comfortable"
-                placeholder="please select one" v-model="selectedOptionForPhone" style="white-spce:nowrap !important;">-->
-        <!--TODO: Fill in with actual values-->
-        <!--<option disabled value=""> Select one</option>
-          <option > comfortable </option>
-          <option > weary </option>
-          <option >  uncomfortable </option>-->
+      <div id="option" class="row" v-if="isPlaceAnswered">
+        <p class="offset-md-2 mr-4">
+          and I feel </p>
+        <v-select id="comfortable" class="col-md-4" label="Select your reason(s)" v-bind:items="phoneChoices" v-model="selectedOptionForPhone" chips hint="remove choices by clicking the X" persistent-hint></v-select>
         </select>
-  
-        <div class="col-md-8 offset-md-2" id="comfortable" v-if="isPlaceAnswered">
-  
-          <div v-bind:class="{dim: !(selectedOptionForPhone === null || selectedOptionForPhone === 'One')}">
-            <input type="radio" id="one" value="One" v-model="selectedOptionForPhone">
-            <label class="custom-input" for="one"> comfortable</label>
-            <br>
-          </div>
-  
-          <span v-bind:class="{dim: !(selectedOptionForPhone === null || selectedOptionForPhone === 'Two')}">
-            <input type="radio" id="two" value="Two" v-model="selectedOptionForPhone">
-            <label class="custom-input" for="two"> weary</label>
-            </label>
-            <br>
-          </span>
-  
-          <span v-bind:class="{dim: !(selectedOptionForPhone === null || selectedOptionForPhone === 'Three')}">
-            <input type="radio" id="three" value="Three" v-model="selectedOptionForPhone">
-            <label class="custom-input" for="three"> uncomfortable</label>
-            </label>
-            <br>
-          </span>
-  
-        </div>
-        <label class="text-center col-sm-auto col-12"> using my phone </label>
+        <p> using my phone </p>
       </div>
   
       <br>
@@ -151,6 +128,11 @@ export default {
         'updates on the study',
         'stats on participation',
         'personal performance'
+      ],
+      phoneChoices: [
+        'comfortable',
+        'weary',
+        'uncomfortable'
       ]
     }
   },
@@ -199,10 +181,13 @@ export default {
           this.scrollPage('#willing')
         }
       },
-    500),
+    1000),
     setIsWilling: _.debounce(
       function () {
         this.isWilling = (this.isInterested && this.selectedOptionTwo.length >= 1 && this.selectedOptionThree.length >= 1)
+        if (this.isWilling) {
+          this.scrollPage('#wouldLike')
+        }
       },
     500),
     setHasAnsweredWouldLike: _.debounce(
@@ -258,7 +243,11 @@ export default {
   },
   directives: {
     Focus
-  }
+  },
+  mounted:
+    function () {
+      this.scrollPage('#start')
+    }
 }
 </script>
 

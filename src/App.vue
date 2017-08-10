@@ -1,20 +1,15 @@
 <template>
   <div id="app" name="top">
-<!--open sans, lato 40px-->
     <nav class="navbar navbar-fixed-top navbar-light pt-0 pb-0">
       <div class="navbar-header">
         <div class="row">
 
           <div class="col-12 text-center text-md-left col-md-4">
-            <!-- making the name a hyperlink is for dev purposes.
-            so that getting to main page is easy, will replace or change
-            at a later time -->
             <h1 class="lead light tiny" id="status">  Eligibility </a></h1>
           </div>
 
           <div class="col-md-8 text-md-right text-center">
               <img src="./images/check.png" class="img-fluid check" alt="image of a check marked circle"></img>
-             <!--  For keeping all the images even  -->
               <img src="./images/survey.svg" ></img>
               <img src="./images/ic_lock_black_48px.svg" ></img>            
               <img src="./images/ic_lock_black_48px.svg" ></img>           
@@ -40,8 +35,9 @@
 <style lang="scss">
   @import 'css/bootstrap/bootstrap';
   #status {    
-      font-weight: 300;
+      font-weight: 400;
       color: white;
+      font-size: $font-size-base !important;
       @media (max-width: 767px) {
         font-size: 24px;
       }
@@ -50,6 +46,10 @@
   label {
     color: black !important;
     font-size: $font-size-base * 0.85 !important;
+  }
+
+ input {
+        font-size: $font-size-base * 0.85 !important;
   }
 
   div.input-group__hint {
