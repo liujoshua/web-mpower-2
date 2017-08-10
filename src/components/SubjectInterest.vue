@@ -12,7 +12,6 @@
 
     <div class="row">    
     <br>
-
     <p class="pageOne col-md-8 offset-md-2 text-left "> I'm interested in joining the mPower study because I </p>
     <v-select class="col-md-8 offset-md-2" label="Select your reason(s)" v-bind:items="interestChoices" v-model="selectedOptionOne" multiple chips hint="remove choices by clicking the X" persistent-hint></v-select>
     </div>
@@ -31,10 +30,9 @@
       <v-select class="col-md-8 offset-md-2" label="Select choices" v-bind:items="returnChoices" v-model="selectedOptionFour" multiple chips hint="remove choices by clicking the X" persistent-hint></v-select>
     
     </div>
-    <hr>
       <br>
       <!--TODO: Make better accesibile elements, currently the page is not navigatable vie keybaord if trying to backtrack on the page-->
-      <div class="row" v-if="isWilling">
+      <div class="row" v-if="hasAnsweredWouldLike">
         <!-- Field input one -->
         <div class="mr-2 col-12 col-sm-auto text-center offset-md-2">
           I am
@@ -117,9 +115,12 @@ export default {
   data () {
     return {
       selectedOptionOne: [],
-      selectedOptionTwo: '',
+      selectedOptionTwo: [],
+      selectedOptionThree: '',
+      selectedOptionFour: [],
       isInterested: false,
       isWilling: false,
+      hasAnsweredWouldLike: false,
       isEligiblePartOne: false,
       age: '',
       zipCode: '',
@@ -160,7 +161,13 @@ export default {
     selectedOptionTwo: function (newOption) {
       this.setIsWilling()
     },
-    isWilling: function (newValue) {
+    selectedOptionThree: function (newOption) {
+      this.setIsWilling()
+    },
+    selectedOptionFour: function (newOption) {
+      this.setHasAnsweredWouldLike()
+    },
+    hasAnsweredWouldLike: function (newValue) {
       this.setIsEligiblePartOne()
     },
     age: function (newAge) {
@@ -187,7 +194,7 @@ export default {
     , 200),
     setIsInterested: _.debounce(
       function () {
-        this.isInterested = (this.selectedOptionOne.length > 1)
+        this.isInterested = (this.selectedOptionOne.length >= 1)
         if (this.isInterested) {
           this.scrollPage('#willing')
         }
@@ -195,12 +202,17 @@ export default {
     500),
     setIsWilling: _.debounce(
       function () {
-        this.isWilling = (this.isInterested && this.selectedOptionTwo !== '')
+        this.isWilling = (this.isInterested && this.selectedOptionTwo.length >= 1 && this.selectedOptionThree.length >= 1)
+      },
+    500),
+    setHasAnsweredWouldLike: _.debounce(
+      function () {
+        this.hasAnsweredWouldLike = this.selectedOptionFour !== ''
       },
     500),
     setIsEligiblePartOne: _.debounce(
       function () {
-        this.isEligiblePartOne = (this.isWilling && this.isInterested)
+        this.isEligiblePartOne = (this.isWilling && this.isInterested && this.hasAnsweredWouldLike)
         if (this.isEligiblePartOne) {
           this.scrollPage('#partTwo')
         }

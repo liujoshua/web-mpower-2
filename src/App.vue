@@ -47,11 +47,6 @@
       }
   }
 
-  p {
-    color: #31117D;
-    font-size: $font-size-base !important;
-  }
-
   label {
     color: black !important;
     font-size: $font-size-base * 0.85 !important;
@@ -71,9 +66,26 @@
           padding-right: 2%;
       }
   }
-  
-  span.chip, div {
-      font-size: $font-size-base * 0.80 !important;
+
+  @media(min-width: 767px) {  
+    p {
+      color: #31117D;
+      font-size: $font-size-base !important;
+    }
+
+    span.chip, div {
+        font-size: $font-size-base * 0.80 !important;
+    }
+  }
+  @media(max-width: 767px) {
+    p {
+      color: #31117D;
+      font-size: $font-size-base * 0.8 !important;
+    }
+
+    span.chip, div {
+      font-size: $font-size-base * 0.60 !important;
+    }
   }
 
   .indicatorFilled {
@@ -134,7 +146,7 @@
 
 
   select, input {
-    border-style: none none solid none !important;
+    // border-style: none none solid none !important;
   }
 
   *:focus {
