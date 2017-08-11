@@ -50,25 +50,74 @@
       {{isLightPurple(3) ? 'remove_circle_outline': 'add_circle_outline'}}
       </v-icon>
     </v-btn>
+    </div>
 
-    <div class="row" v-if="isInterested">
+    <div class="row">
   
       <br class="visible-md-up">
-      <p v-if="isInterested" class="col-md-8 offset-md-2 text-left"> and I would be willing to try </p>
-      <v-select class="col-12 col-md-4 offset-md-2" label="Select activity(s)" v-bind:items="willingChoices" v-model="selectedOptionTwo" multiple chips hint="remove choices by clicking the X" persistent-hint></v-select>
+      <p class="col-md-8 offset-md-2 text-left"> I'd be willing to try </p>
+
+      <v-btn v-model="selectedChoices" round class=" round x-long lightPurple" @click="handleClick(4)"
+          v-bind:class="{ 'lightPurple': isLightPurple(4), 'darkPurple': isDarkPurple(4)}"> Finger Tapping
+            <v-icon v-bind:class="{ 'dark': isLightPurple(4)}" center>
+            {{isLightPurple(4) ? 'remove_circle_outline': 'add_circle_outline'}}
+            </v-icon>
+          </v-btn>
+
+
+          <v-btn v-model="selectedChoices" round class=" round lightPurple" @click="handleClick(5)"
+          v-bind:class="{ 'lightPurple': isLightPurple(5), 'darkPurple': isDarkPurple(5)}"> Walking
+            <v-icon v-bind:class="{ 'dark': isLightPurple(5)}" center>
+            {{isLightPurple(5) ? 'remove_circle_outline': 'add_circle_outline'}}
+            </v-icon>
+          </v-btn>
+
+
+          <v-btn v-model="selectedChoices" round class=" round  lightPurple offset-sm-2" @click="handleClick(6)"
+          v-bind:class="{ 'lightPurple': isLightPurple(6), 'darkPurple': isDarkPurple(6)}"> Am curious
+            <v-icon v-bind:class="{ 'dark': isLightPurple(6)}" center>
+            {{isLightPurple(6) ? 'remove_circle_outline': 'add_circle_outline'}}
+            </v-icon>
+          </v-btn>
+
+      <p class="col-md-8 offset-md-2 text-left"> I'd be willing to do this/these activities: </p>
+
+
       <v-select class="col-12 col-md-4" label="Select frequency" v-bind:items="frequencyChoices" v-model="selectedOptionThree" chips hint="remove choices by clicking the X" persistent-hint></v-select>
     
     </div>
 
 
-    <div class="row" v-if="isWilling"> 
+    <div class="row"> 
       <p class="col-md-8 offset-md-2 text-left"> What would you like from us? </p>
-      <v-select id="wouldLike" class="col-md-8 offset-md-2" label="Select choices" v-bind:items="returnChoices" v-model="selectedOptionFour" multiple chips hint="remove choices by clicking the X" persistent-hint></v-select>
+       <v-btn v-model="selectedChoices" round class=" round x-long lightPurple" @click="handleClick(7)"
+          v-bind:class="{ 'lightPurple': isLightPurple(7), 'darkPurple': isDarkPurple(7)}"> Updates on the study
+            <v-icon v-bind:class="{ 'dark': isLightPurple(7)}" center>
+            {{isLightPurple(7) ? 'remove_circle_outline': 'add_circle_outline'}}
+            </v-icon>
+          </v-btn>
+
+
+          <v-btn v-model="selectedChoices" round class=" round lightPurple" @click="handleClick(8)"
+          v-bind:class="{ 'lightPurple': isLightPurple(8), 'darkPurple': isDarkPurple(8)}"> Stats on participation
+            <v-icon v-bind:class="{ 'dark': isLightPurple(8)}" center>
+            {{isLightPurple(8) ? 'remove_circle_outline': 'add_circle_outline'}}
+            </v-icon>
+          </v-btn>
+
+
+          <v-btn v-model="selectedChoices" round class=" round  lightPurple offset-sm-2" @click="handleClick(9)"
+          v-bind:class="{ 'lightPurple': isLightPurple(9), 'darkPurple': isDarkPurple(9)}"> Personal performace
+            <v-icon v-bind:class="{ 'dark': isLightPurple(9)}" center>
+            {{isLightPurple(9) ? 'remove_circle_outline': 'add_circle_outline'}}
+            </v-icon>
+          </v-btn>
+      <!--<v-select id="wouldLike" class="col-md-8 offset-md-2" label="Select choices" v-bind:items="returnChoices" v-model="selectedOptionFour" multiple chips hint="remove choices by clicking the X" persistent-hint></v-select>-->
     
     </div>
       <br>
-      <hr v-if="hasAnsweredWouldLike" id="partTwo">
-      <div class="row" v-if="hasAnsweredWouldLike">
+      <hr id="partTwo">
+      <div class="row">
         <p class="lead col-md-8 offset-md-2"> We'd just like a few more pieces of information to make sure you're eligible </p>
 
           <p class="col-4 col-sm-auto offset-4 offset-sm-2"> I am  </p>
@@ -173,7 +222,7 @@ export default {
         'uncomfortable'
       ],
       turn: false,
-      selectedChoices: [null, null, null, null, null, null, null],
+      selectedChoices: [null, null, null, null, null, null, null, null, null],
       lightPurpleDisk: 'g',
       darkPurpleDisk: 'b',
       moves: []
