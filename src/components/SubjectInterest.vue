@@ -50,6 +50,8 @@
       {{isLightPurple(3) ? 'remove_circle_outline': 'add_circle_outline'}}
       </v-icon>
     </v-btn>
+      <br class="visible-md-up">
+      <br class="visible-md-up">
     </div>
 
     <div class="row">
@@ -57,7 +59,7 @@
       <br class="visible-md-up">
       <p class="col-md-8 offset-md-2 text-left"> I'd be willing to try </p>
 
-      <v-btn v-model="selectedChoices" round class=" round x-long lightPurple" @click="handleClick(4)"
+      <v-btn v-model="selectedChoices" round class="offset-sm-2 round x-long lightPurple" @click="handleClick(4)"
           v-bind:class="{ 'lightPurple': isLightPurple(4), 'darkPurple': isDarkPurple(4)}"> Finger Tapping
             <v-icon v-bind:class="{ 'dark': isLightPurple(4)}" center>
             {{isLightPurple(4) ? 'remove_circle_outline': 'add_circle_outline'}}
@@ -73,24 +75,25 @@
           </v-btn>
 
 
-          <v-btn v-model="selectedChoices" round class=" round  lightPurple offset-sm-2" @click="handleClick(6)"
+          <v-btn v-model="selectedChoices" round class=" round  lightPurple" @click="handleClick(6)"
           v-bind:class="{ 'lightPurple': isLightPurple(6), 'darkPurple': isDarkPurple(6)}"> Am curious
             <v-icon v-bind:class="{ 'dark': isLightPurple(6)}" center>
             {{isLightPurple(6) ? 'remove_circle_outline': 'add_circle_outline'}}
             </v-icon>
           </v-btn>
-
+      
+      <br class="visible-md-up">
+      <br class="visible-md-up">
+      
       <p class="col-md-8 offset-md-2 text-left"> I'd be willing to do this/these activities: </p>
-
-
-      <v-select class="col-12 col-md-4" label="Select frequency" v-bind:items="frequencyChoices" v-model="selectedOptionThree" chips hint="remove choices by clicking the X" persistent-hint></v-select>
+      <v-select class="col-12 offset-md-2 col-md-4" label="Select frequency" v-bind:items="frequencyChoices" v-model="selectedOptionThree" chips hint="remove choices by clicking the X" persistent-hint></v-select>
     
     </div>
 
-
+    <br class="visible-md-up">
     <div class="row"> 
-      <p class="col-md-8 offset-md-2 text-left"> What would you like from us? </p>
-       <v-btn v-model="selectedChoices" round class=" round x-long lightPurple" @click="handleClick(7)"
+      <p class="col-md-8 offset-md-2"> What would you like from us? </p>
+       <v-btn v-model="selectedChoices" round class="offset-md-2 round x-long lightPurple" @click="handleClick(7)"
           v-bind:class="{ 'lightPurple': isLightPurple(7), 'darkPurple': isDarkPurple(7)}"> Updates on the study
             <v-icon v-bind:class="{ 'dark': isLightPurple(7)}" center>
             {{isLightPurple(7) ? 'remove_circle_outline': 'add_circle_outline'}}
