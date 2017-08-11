@@ -97,7 +97,23 @@
   .green {
     background-color: #4caf50 !important;
     width: 100% !important;
-    opacity: 1 !important;
+    opacity: 1 !important; 
+  }
+
+  .lightPurple {
+    color: #473B7B !important;    
+    background-color: rgba(71,59,123,0.08) !important;
+  }
+  .large {
+    min-width: 250px;
+  }
+  .darkPurple{
+    color: white !important;
+    background-color: #473B7B !important;  
+  }
+
+  .lower {
+    text-transform: none;
   }
   .indicatorEmpty {
       position: fixed;
@@ -211,14 +227,31 @@
     margin-left: auto;
   }
 
+  .tiny {
+      font-size: $font-size-base * 0.7 !important;
+  }
   footer {
     display: none;
   }
+
+  .round {
+    border-radius: 100px !important; 
+    text-align: center !important;
+   }
 
   .lead {
     color: #3b4a63;
   }
 
+  .long {
+    width: 295px;
+  }
+  .x-long {
+    width: 325px;
+  }
+  div.btn__content {
+    font-size: 20px !important;
+   }
   .large {
       font-size: 33px;
   }

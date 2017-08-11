@@ -16,9 +16,40 @@
 
     <div class="row">    
     <br>
-    <p class="col-md-8 offset-md-2 text-left "> I'm interested in joining the mPower study because I </p>
-    <v-select id="willing" class="col-md-8 offset-md-2" label="Select your reason(s)" v-bind:items="interestChoices" v-model="selectedOptionOne" multiple chips hint="remove choices by clicking the X" persistent-hint></v-select>
-    </div>
+    <p class="col-md-8 offset-md-2 text-left "> Why are you interested in joining mPower? </p>
+    <p class="col-md-10 offset-md-2 text-left tiny lead"> Select your reasons by selecting them below. You can remove them by clicking the X. </p>
+    
+
+     <v-btn v-model="selectedChoices" round class="offset-sm-2 round long lightPurple" @click="handleClick(0)"
+    v-bind:class="{ 'lightPurple': isLightPurple(0), 'darkPurple': isDarkPurple(0)}"> Want to help myself
+      <v-icon v-bind:class="{ 'dark': isLightPurple(0)}" center>
+      {{isLightPurple(0) ? 'remove_circle_outline': 'add_circle_outline'}}
+      </v-icon>
+    </v-btn>
+
+
+     <v-btn v-model="selectedChoices" round class=" round x-long lightPurple" @click="handleClick(1)"
+    v-bind:class="{ 'lightPurple': isLightPurple(1), 'darkPurple': isDarkPurple(1)}"> Want to help a loved one
+      <v-icon v-bind:class="{ 'dark': isLightPurple(1)}" center>
+      {{isLightPurple(1) ? 'remove_circle_outline': 'add_circle_outline'}}
+      </v-icon>
+    </v-btn>
+
+
+     <v-btn v-model="selectedChoices" round class=" round lightPurple" @click="handleClick(2)"
+    v-bind:class="{ 'lightPurple': isLightPurple(2), 'darkPurple': isDarkPurple(2)}"> help others
+      <v-icon v-bind:class="{ 'dark': isLightPurple(2)}" center>
+      {{isLightPurple(2) ? 'remove_circle_outline': 'add_circle_outline'}}
+      </v-icon>
+    </v-btn>
+
+
+     <v-btn v-model="selectedChoices" round class=" round  lightPurple offset-sm-2" @click="handleClick(3)"
+    v-bind:class="{ 'lightPurple': isLightPurple(3), 'darkPurple': isDarkPurple(3)}"> Am curious
+      <v-icon v-bind:class="{ 'dark': isLightPurple(3)}" center>
+      {{isLightPurple(3) ? 'remove_circle_outline': 'add_circle_outline'}}
+      </v-icon>
+    </v-btn>
 
     <div class="row" v-if="isInterested">
   
@@ -140,11 +171,17 @@ export default {
         'comfortable',
         'weary',
         'uncomfortable'
-      ]
+      ],
+      turn: false,
+      selectedChoices: [null, null, null, null, null, null, null],
+      lightPurpleDisk: 'g',
+      darkPurpleDisk: 'b',
+      moves: []
     }
   },
   watch: {
-    selectedOptionOne: function (newOption) {
+    selectedChoices: function () {
+      console.log('hi')
       this.setIsInterested()
     },
     selectedOptionTwo: function (newOption) {
@@ -178,6 +215,15 @@ export default {
         this.$router.push('Congratulations')
       }
     },
+    findValues (start, stop) {
+      var inUse = 0
+      for (var i = start; i < stop; i++) {
+        if (this.selectedChoices[i] !== null) {
+          inUse++
+        }
+      }
+      return (inUse > 0)
+    },
     scrollPage: _.debounce(
       function (arg1) {
         this.$scrollTo(arg1, 1500, { easing: 'linear' })
@@ -185,7 +231,8 @@ export default {
     , 200),
     setIsInterested: _.debounce(
       function () {
-        this.isInterested = (this.selectedOptionOne.length >= 1)
+        this.isInterested = this.findValues(0, 4)
+        console.log(this.isInterested)
         if (this.isInterested) {
           this.scrollPage('#willing')
         }
@@ -246,7 +293,17 @@ export default {
           this.scrollPage('#btn')
         }
       }, 500
-    )
+    ),
+    handleClick: function (index) {
+      this.turn = !this.turn
+      this.turn ? this.selectedChoices[index] = this.darkPurpleDisk : this.selectedChoices[index] = this.lightPurpleDisk
+    },
+    isLightPurple: function (index) {
+      return (this.selectedChoices[index] === this.lightPurpleDisk)
+    },
+    isDarkPurple: function (idx1) {
+      return !(this.turn == null) && (this.selectedChoices[idx1] === this.darkPurpleDisk)
+    }
   },
   directives: {
     Focus
