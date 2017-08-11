@@ -55,7 +55,7 @@
              ></v-text-field>
           </v-flex>
           <v-flex class="col-6 col-sm-auto offset-3 offset-sm-0" v-if="isUnderage !== null && !isUnderage">           
-            <p> I live in &nbsp; </p>
+            <p> I live in </p>
           </v-flex>
           <v-flex class="col-md-3" v-if="isUnderage !== null && !isUnderage">
             <v-text-field suffix="zipcode" single-line pattern="\d*" bottom name="input-1" label="5-digit zipcode" id="placeField" type="number" v-model.number="zipCode"></v-text-field>
@@ -167,6 +167,8 @@ export default {
     },
     selectedOptionForPhone: function (newOption) {
       this.setHasChosenOption()
+    },
+    hasChosenOption: function () {
       this.setIsEligiblePartTwo()
     }
   },
@@ -188,7 +190,7 @@ export default {
           this.scrollPage('#willing')
         }
       },
-    1000),
+    1500),
     setIsWilling: _.debounce(
       function () {
         this.isWilling = (this.isInterested && this.selectedOptionTwo.length >= 1 && this.selectedOptionThree.length >= 1)
@@ -196,7 +198,7 @@ export default {
           this.scrollPage('#wouldLike')
         }
       },
-    500),
+    1500),
     setHasAnsweredWouldLike: _.debounce(
       function () {
         this.hasAnsweredWouldLike = this.selectedOptionFour !== ''
@@ -220,24 +222,22 @@ export default {
         if (!this.isUnderage) {
           this.scrollPage('#live')
         }
-      }, 500
+      }, 1000
     ),
     setIsPlaceAnswered: _.debounce(
       function () {
         this.isPlaceAnswered = (this.zipCode !== '' && this.zipCode >= 10000)
         if (this.isPlaceAnswered) {
           this.scrollPage('#option')
-          this.value = 0.8
         } else {
           this.scrollPage('#zipError')
         }
-      }, 500
+      }, 2000
     ),
     setHasChosenOption: _.debounce(
       function () {
         this.hasChosenOption = (this.selectedOptionForPhone !== '')
-        this.value = 1
-      }, 500
+      }, 1000
     ),
     setIsEligiblePartTwo: _.debounce(
       function () {
